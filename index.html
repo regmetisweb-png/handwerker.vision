@@ -1,231 +1,2035 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>handwerker.vision — Digitale Lösungen für Handwerksbetriebe</title>
-  <meta name="description" content="Ihre Webseite wird zum verlässlichen Mitarbeiter im Büro. Anfragen, Termine und Rückrufe laufen automatisch ab. Für Handwerksbetriebe in Freiburg und Basel.">
-  <meta name="keywords" content="Handwerker Website, Digitalisierung Handwerk, Webseite Handwerksbetrieb, Freiburg, Basel">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Webdesign für Handwerksbetriebe | METISWEB VISION – Freiburg & Basel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; background: #0D0F14; }
+body {
+  background: #0D0F14;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+:root {
+  --black: #0D0F14;
+  --white: #fff;
+  --blue: #2463EB;
+  --red: #E8472A;
+  --muted: rgba(255,255,255,0.35);
+  --line: rgba(255,255,255,0.1);
+  --card: rgba(255,255,255,0.03);
+  --mono: 'Space Mono', monospace;
+  --display: 'Bebas Neue', sans-serif;
+  --body: 'DM Sans', sans-serif;
+}
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="handwerker.vision — Digitale Lösungen für Handwerksbetriebe">
-  <meta property="og:description" content="Ihre Webseite wird zum verlässlichen Mitarbeiter im Büro. Anfragen, Termine und Rückrufe laufen automatisch ab.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://handwerker.vision/">
-  <meta property="og:locale" content="de_DE">
+/* ============================================================
+   CURSOR
+   ============================================================ */
+.cursor {
+  width: 8px; height: 8px;
+  background: var(--blue);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s;
+  mix-blend-mode: normal;
+}
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+/* ============================================================
+   NAV
+   ============================================================ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  padding: 16px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, rgba(13,15,20,0.98) 0%, rgba(13,15,20,0.7) 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.logo {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.logo span { color: var(--blue); }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--white); }
+.btn-nav {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: var(--blue);
+  color: #ffffff;
+  border: none;
+  padding: 9px 18px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.btn-nav:hover { background: var(--white); }
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+/* ============================================================
+   SHARED ELEMENTS
+   ============================================================ */
+.section-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-eyebrow.lime { color: var(--blue); }
+.section-eyebrow::after {
+  content: '';
+  display: inline-block;
+  height: 1px;
+  width: 32px;
+  background: currentColor;
+  opacity: 0.4;
+}
+.display-xl {
+  font-family: var(--display);
+  line-height: 0.92;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.display-xl .accent { color: var(--blue); }
+.display-xl .muted-word { color: rgba(255,255,255,0.2); }
+.mono-body {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.9;
+}
+.btn-lime {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: var(--blue);
+  color: #ffffff;
+  border: none;
+  padding: 14px 28px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.2s;
+  display: inline-block;
+}
+.btn-lime:hover { background: var(--white); }
+.btn-outline {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  padding: 13px 28px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-block;
+}
+.btn-outline:hover { border-color: rgba(255,255,255,0.4); color: var(--white); }
+.divider { height: 1px; background: var(--line); }
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/animations.css">
-  <link rel="stylesheet" href="css/responsive.css">
+/* ============================================================
+   REVEAL
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.delay-1 { transition-delay: 0.1s !important; }
+.delay-2 { transition-delay: 0.2s !important; }
+.delay-3 { transition-delay: 0.3s !important; }
+.delay-4 { transition-delay: 0.4s !important; }
 
-  <!-- JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "handwerker.vision",
-    "description": "Digitale Lösungen für Handwerksbetriebe — Webseiten, Automatisierung, KI-Assistenten",
-    "url": "https://handwerker.vision",
-    "telephone": "+4976159414747",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Freiburg",
-      "addressCountry": "DE"
-    },
-    "areaServed": ["Freiburg", "Lörrach", "Basel"]
-  }
-  </script>
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  min-height: 100vh;
+  padding: 0 5%;
+  padding-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  overflow: hidden;
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+  animation: gridMove 24s linear infinite;
+}
+@keyframes gridMove {
+  to { transform: translate(56px, 56px); }
+}
+.hero-geo-1 {
+  position: absolute; top: 18%; right: 7%;
+  width: 2px; height: 100px;
+  background: linear-gradient(to bottom, var(--blue), transparent);
+}
+.hero-geo-2 {
+  position: absolute; top: 28%; right: 12%;
+  width: 36px; height: 2px;
+  background: linear-gradient(to right, var(--blue), transparent);
+}
+.hero-geo-3 {
+  position: absolute; top: 22%; right: 9%;
+  width: 6px; height: 6px;
+  background: var(--blue);
+  animation: blink 2.4s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+/* Loss-aversion alert strip */
+.hero-alert {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  margin-top: 68px;
+  background: rgba(232,71,42,0.08);
+  border-bottom: 1px solid rgba(232,71,42,0.2);
+  padding: 10px 5%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 2;
+}
+.hero-alert-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--red);
+  flex-shrink: 0;
+  animation: blink 1.5s ease infinite;
+}
+.hero-alert-text {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.hero-alert-text strong { color: #fff; }
+
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 22px;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 20px; height: 1px;
+  background: var(--blue);
+}
+
+.hero-headline {
+  font-family: var(--display);
+  font-size: clamp(4.5rem, 13vw, 13rem);
+  line-height: 0.91;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white);
+  position: relative;
+  z-index: 2;
+  margin-bottom: 0;
+}
+.hero-headline .accent { color: var(--blue); }
+.hero-headline .ghost { color: rgba(255,255,255,0.08); }
+
+.hero-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 48px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+  position: relative;
+  z-index: 2;
+}
+.hero-sub {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.95;
+  max-width: 420px;
+}
+.hero-sub strong { color: var(--white); }
+.hero-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.hero-ctas .btn-lime { width: 100%; text-align: center; }
+.hero-ctas .btn-outline { width: 100%; text-align: center; }
+.hero-ctas .cta-hint {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+  text-align: center;
+}
+
+/* ============================================================
+   TICKER
+   ============================================================ */
+.ticker-wrap {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+  overflow: hidden;
+}
+.ticker-track {
+  display: flex;
+  gap: 48px;
+  animation: tickerRun 28s linear infinite;
+  white-space: nowrap;
+}
+.ticker-track span {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.ticker-track span strong { color: var(--white); }
+.ticker-track span .sep { color: var(--blue); margin: 0 6px; }
+@keyframes tickerRun { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ============================================================
+   PROBLEM SECTION
+   ============================================================ */
+.problem-section {
+  padding: 100px 5%;
+}
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  margin-top: 48px;
+}
+.problem-list { border-top: 1px solid var(--line); }
+.problem-item {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+}
+.problem-num {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--red);
+  letter-spacing: 2px;
+  padding-top: 2px;
+}
+.problem-text {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.75;
+}
+.problem-text strong { color: var(--white); }
+.problem-visual {
+  position: relative;
+  background: rgba(232,71,42,0.03);
+  border: 1px solid rgba(232,71,42,0.1);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.problem-visual-title {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 28px;
+}
+.cost-display {
+  font-family: var(--display);
+  font-size: clamp(3rem, 6vw, 6rem);
+  color: var(--red);
+  letter-spacing: 2px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.cost-label {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(232,71,42,0.5);
+  margin-bottom: 32px;
+}
+.cost-bar-wrap { margin-bottom: 8px; }
+.cost-bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.cost-bar {
+  height: 3px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 0;
+  overflow: hidden;
+}
+.cost-bar-fill {
+  height: 100%;
+  background: var(--red);
+  border-radius: 0;
+  animation: fillBar 2s ease forwards;
+  animation-delay: 0.5s;
+  width: 0;
+}
+@keyframes fillBar { to { width: var(--fill); } }
+
+/* ============================================================
+   STATS
+   ============================================================ */
+.stats-section {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.stat-item {
+  padding: 48px 36px;
+  border-right: 1px solid var(--line);
+  position: relative;
+}
+.stat-item:last-child { border-right: none; }
+.stat-item::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 36px;
+  width: 20px; height: 2px;
+  background: var(--blue);
+}
+.stat-num {
+  font-family: var(--display);
+  font-size: clamp(2.8rem, 5vw, 5.2rem);
+  letter-spacing: 2px;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-num .acc { color: var(--blue); }
+.stat-desc {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   LEISTUNGEN
+   ============================================================ */
+.features-section {
+  padding: 100px 5%;
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--line);
+  margin-top: 48px;
+}
+.feature-card {
+  padding: 40px 36px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.25s;
+}
+.feature-card:nth-child(2n) { border-right: none; }
+.feature-card:nth-last-child(-n+2) { border-bottom: none; }
+.feature-card:hover { background: rgba(36,99,235,0.02); }
+.feature-card::before {
+  content: attr(data-num);
+  position: absolute;
+  top: 20px; right: 24px;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 2px;
+  color: var(--blue);
+}
+.feature-icon {
+  font-size: 1.4rem;
+  margin-bottom: 18px;
+  display: block;
+}
+.feature-title {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.feature-desc {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.85;
+}
+.feature-result {
+  margin-top: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+.feature-result::before { content: '→'; }
+
+/* ============================================================
+   PROZESS
+   ============================================================ */
+.process-section {
+  padding: 100px 5%;
+  background: rgba(255,255,255,0.01);
+  border-top: 1px solid var(--line);
+}
+.process-steps {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--line);
+}
+.process-step {
+  padding: 40px 32px;
+  border-right: 1px solid var(--line);
+  position: relative;
+}
+.process-step:last-child { border-right: none; }
+.step-num {
+  font-family: var(--display);
+  font-size: 3.5rem;
+  color: rgba(255,255,255,0.06);
+  letter-spacing: 2px;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+.step-title {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 14px;
+}
+.step-body {
+  font-family: var(--mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.85;
+}
+.step-tag {
+  margin-top: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue);
+  border: 1px solid rgba(36,99,235,0.2);
+  padding: 4px 10px;
+}
+
+/* ============================================================
+   PREISE
+   ============================================================ */
+.pricing-section {
+  padding: 100px 5%;
+  border-top: 1px solid var(--line);
+}
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--line);
+  margin-top: 56px;
+}
+.pricing-card {
+  padding: 40px 32px;
+  border-right: 1px solid var(--line);
+  position: relative;
+  transition: background 0.25s;
+}
+.pricing-card:last-child { border-right: none; }
+.pricing-card.featured {
+  background: rgba(36,99,235,0.03);
+  border-color: rgba(36,99,235,0.2);
+}
+.pricing-card.featured::before {
+  content: 'EMPFOHLEN';
+  position: absolute;
+  top: -1px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--blue);
+  color: #ffffff;
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 4px 12px;
+}
+.pricing-name {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+.pricing-price {
+  font-family: var(--display);
+  font-size: clamp(2.8rem, 4.5vw, 4.5rem);
+  letter-spacing: 2px;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.pricing-price .acc { color: var(--blue); }
+.pricing-period {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 32px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+.pricing-features { margin-bottom: 32px; }
+.pricing-feat {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.pricing-feat:last-child { border-bottom: none; }
+.pricing-feat .check { color: var(--blue); flex-shrink: 0; margin-top: 1px; }
+.pricing-feat .x { color: rgba(255,255,255,0.15); flex-shrink: 0; }
+.pricing-cta {
+  width: 100%;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--white);
+  border: 1px solid var(--line);
+  padding: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: block;
+  text-align: center;
+}
+.pricing-cta:hover { border-color: var(--blue); color: var(--blue); }
+.pricing-card.featured .pricing-cta {
+  background: var(--blue);
+  color: #ffffff;
+  border-color: var(--blue);
+  font-weight: 700;
+}
+.pricing-card.featured .pricing-cta:hover { background: var(--white); }
+.pricing-note {
+  margin-top: 24px;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+  text-align: center;
+}
+
+/* ============================================================
+   FALLSTUDIEN
+   ============================================================ */
+.cases-section {
+  padding: 100px 5%;
+  border-top: 1px solid var(--line);
+}
+.cases-list { margin-top: 56px; }
+.case-item {
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 160px;
+  gap: 32px;
+  padding: 36px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+  transition: background 0.2s;
+  cursor: default;
+}
+.case-item:first-child { border-top: 1px solid var(--line); }
+.case-item:hover { background: rgba(36,99,235,0.015); }
+.case-tag {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue);
+  border: 1px solid rgba(36,99,235,0.2);
+  padding: 4px 8px;
+  text-align: center;
+}
+.case-client {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.case-location {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.case-result-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.case-metric {
+  padding: 12px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--line);
+}
+.case-metric-num {
+  font-family: var(--display);
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+  color: var(--blue);
+  line-height: 1;
+  margin-bottom: 3px;
+}
+.case-metric-label {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.4;
+}
+.case-quote {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* ============================================================
+   REFERENZEN
+   ============================================================ */
+.refs-section {
+  padding: 100px 5%;
+  border-top: 1px solid var(--line);
+  background: rgba(255,255,255,0.01);
+}
+.refs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--line);
+  margin-top: 56px;
+}
+.ref-card {
+  padding: 36px 28px;
+  border-right: 1px solid var(--line);
+  position: relative;
+}
+.ref-card:last-child { border-right: none; }
+.ref-stars {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  color: var(--blue);
+  letter-spacing: 4px;
+  margin-bottom: 16px;
+}
+.ref-text {
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 24px;
+  font-weight: 300;
+  font-style: italic;
+}
+.ref-divider { height: 1px; background: var(--line); margin-bottom: 16px; }
+.ref-author {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 3px;
+}
+.ref-meta {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ============================================================
+   VISION DEMO
+   ============================================================ */
+.demo-section {
+  padding: 100px 5%;
+  border-top: 1px solid var(--line);
+}
+.demo-inner {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid rgba(36,99,235,0.15);
+}
+.demo-info {
+  padding: 48px 40px;
+  border-right: 1px solid rgba(36,99,235,0.1);
+}
+.demo-features { margin: 28px 0; }
+.demo-feat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.demo-feat::before { content: '→'; color: var(--blue); }
+.demo-feat:last-child { border-bottom: none; }
+.demo-chat {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(36,99,235,0.01);
+}
+.chat-msg {
+  max-width: 85%;
+  padding: 12px 16px;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.3px;
+  line-height: 1.65;
+}
+.chat-msg.user {
+  align-self: flex-end;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--line);
+  color: var(--white);
+  text-transform: uppercase;
+}
+.chat-msg.bot {
+  align-self: flex-start;
+  background: rgba(36,99,235,0.06);
+  border: 1px solid rgba(36,99,235,0.2);
+  color: rgba(255,255,255,0.8);
+}
+.chat-msg .bot-label {
+  font-size: 0.52rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 5px;
+  display: block;
+}
+.chat-input-row {
+  display: flex;
+  gap: 0;
+  margin-top: 12px;
+  border: 1px solid rgba(36,99,235,0.2);
+}
+.chat-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 12px 16px;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--white);
+  outline: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.chat-input::placeholder { color: rgba(255,255,255,0.2); }
+.chat-send {
+  background: var(--blue);
+  color: #ffffff;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: background 0.2s;
+}
+.chat-send:hover { background: var(--white); }
+
+/* ============================================================
+   WEB AUDIT CTA
+   ============================================================ */
+.audit-section {
+  padding: 100px 5%;
+  border-top: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.audit-section::before {
+  content: 'AUDIT';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--display);
+  font-size: 28vw;
+  color: rgba(36,99,235,0.025);
+  letter-spacing: 10px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.audit-headline {
+  font-family: var(--display);
+  font-size: clamp(3rem, 8vw, 8rem);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 0.92;
+  margin-bottom: 28px;
+  position: relative;
+}
+.audit-headline .acc { color: var(--blue); }
+.audit-sub {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.9;
+  max-width: 460px;
+  margin: 0 auto 40px;
+  position: relative;
+}
+.audit-badges {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 40px;
+  border: 1px solid var(--line);
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  position: relative;
+}
+.audit-badge {
+  flex: 1;
+  padding: 14px;
+  border-right: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.5;
+}
+.audit-badge:last-child { border-right: none; }
+.audit-badge strong { display: block; color: var(--blue); font-size: 0.75rem; margin-bottom: 3px; }
+.audit-cta-group {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  position: relative;
+}
+
+/* ============================================================
+   LEAD FORMULAR
+   ============================================================ */
+.form-section {
+  padding: 100px 5%;
+  border-top: 1px solid var(--line);
+  background: rgba(255,255,255,0.01);
+}
+.form-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-top: 56px;
+  align-items: start;
+}
+.form-info .form-points { margin-top: 28px; }
+.form-point {
+  display: flex;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.form-point::before { content: '→'; color: var(--blue); flex-shrink: 0; }
+.form-point:last-child { border-bottom: none; }
+.leadform {
+  border: 1px solid var(--line);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.form-label {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.form-input {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--line);
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.5px;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+.form-input:focus { border-color: rgba(36,99,235,0.4); }
+.form-input::placeholder { color: rgba(255,255,255,0.15); text-transform: uppercase; letter-spacing: 1px; font-size: 0.62rem; }
+.check-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s;
+}
+.check-item:hover { border-color: var(--line); background: rgba(255,255,255,0.02); }
+.check-item input { accent-color: var(--blue); }
+.check-item span {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.form-submit {
+  width: 100%;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: var(--blue);
+  color: #ffffff;
+  border: none;
+  padding: 16px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.2s;
+  margin-top: 8px;
+}
+.form-submit:hover { background: var(--white); }
+.form-legal {
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.5px;
+  color: rgba(255,255,255,0.2);
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+.form-legal a { color: rgba(255,255,255,0.3); }
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq-section {
+  padding: 100px 5%;
+  border-top: 1px solid var(--line);
+}
+.faq-list { margin-top: 56px; }
+.faq-item {
+  border-bottom: 1px solid var(--line);
+}
+.faq-item:first-child { border-top: 1px solid var(--line); }
+.faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 0;
+  cursor: pointer;
+  gap: 20px;
+}
+.faq-q-text {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1.4;
+}
+.faq-toggle {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--blue);
+  flex-shrink: 0;
+  transition: transform 0.25s;
+}
+.faq-item.open .faq-toggle { transform: rotate(45deg); }
+.faq-a {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.9;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.25s;
+}
+.faq-item.open .faq-a {
+  max-height: 240px;
+  padding-bottom: 22px;
+}
+
+/* ============================================================
+   TERMIN FINAL CTA
+   ============================================================ */
+.final-cta {
+  padding: 120px 5%;
+  border-top: 1px solid var(--line);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.final-cta::before {
+  content: 'START';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--display);
+  font-size: 30vw;
+  color: rgba(36,99,235,0.025);
+  pointer-events: none;
+  white-space: nowrap;
+  letter-spacing: 8px;
+}
+.final-headline {
+  font-family: var(--display);
+  font-size: clamp(3rem, 9vw, 9rem);
+  line-height: 0.91;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--white);
+  margin-bottom: 28px;
+  position: relative;
+}
+.final-headline .acc { color: var(--blue); }
+.final-sub {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.9;
+  max-width: 460px;
+  margin: 0 auto 48px;
+  position: relative;
+}
+.final-cta-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  position: relative;
+}
+
+/* ============================================================
+   CHAT FAB
+   ============================================================ */
+.chat-fab {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  z-index: 300;
+  width: 52px; height: 52px;
+  background: var(--blue);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  animation: fabPulse 3s ease infinite;
+}
+.chat-fab:hover { background: var(--white); transform: scale(1.06); }
+@keyframes fabPulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(36,99,235,0.4); }
+  50% { box-shadow: 0 0 0 14px rgba(36,99,235,0); }
+}
+.chat-fab svg { width: 20px; height: 20px; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  border-top: 1px solid var(--line);
+  padding: 28px 5%;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+}
+.footer-l, .footer-r {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+}
+.footer-r { text-align: right; }
+.footer-r a { color: rgba(255,255,255,0.25); text-decoration: none; }
+.footer-r a:hover { color: var(--muted); }
+.footer-c {
+  font-family: var(--display);
+  font-size: 1.1rem;
+  letter-spacing: 4px;
+  color: rgba(36,99,235,0.3);
+  text-align: center;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 960px) {
+  .hero-bottom, .problem-grid, .demo-inner, .form-inner { grid-template-columns: 1fr; }
+  .hero-ctas { align-items: stretch; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .stat-item:nth-child(2) { border-right: none; }
+  .stat-item:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .process-steps { grid-template-columns: 1fr 1fr; }
+  .process-step:nth-child(2) { border-right: none; }
+  .process-step:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .pricing-card { border-right: none; border-bottom: 1px solid var(--line); }
+  .pricing-card:last-child { border-bottom: none; }
+  .features-grid { grid-template-columns: 1fr; }
+  .feature-card { border-right: none !important; }
+  .case-item { grid-template-columns: 1fr; gap: 16px; }
+  .refs-grid { grid-template-columns: 1fr; }
+  .ref-card { border-right: none; border-bottom: 1px solid var(--line); }
+  footer { grid-template-columns: 1fr; text-align: center; }
+  .footer-r { text-align: center; }
+  nav .nav-links a { display: none; }
+  .audit-cta-group, .final-cta-row { flex-direction: column; align-items: center; }
+}
+@media (max-width: 600px) {
+  .stats-grid { grid-template-columns: 1fr; }
+  .stat-item { border-right: none !important; border-bottom: 1px solid var(--line); }
+  .process-steps { grid-template-columns: 1fr; }
+  .process-step { border-right: none !important; border-bottom: 1px solid var(--line); }
+  .audit-badges { flex-direction: column; }
+  .audit-badge { border-right: none; border-bottom: 1px solid var(--line); }
+}
+</style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav class="nav" id="nav">
-    <div class="container nav__inner">
-      <a href="/" class="nav__logo">handwerker<span>.vision</span></a>
-      <div class="nav__links">
-        <a href="leistungen.html" class="nav__link">Leistungen</a>
-        <a href="pakete.html" class="nav__link">Pakete</a>
-        <a href="referenzen.html" class="nav__link">Referenzen</a>
-        <a href="kontakt.html" class="nav__link">Kontakt</a>
+<div class="cursor" id="cursor"></div>
+
+<!-- ==================== NAV ==================== -->
+<nav>
+  <div class="logo">Metis<span>Web</span>.Vision</div>
+  <div class="nav-links">
+    <a href="#leistungen">Leistungen</a>
+    <a href="#preise">Preise</a>
+    <a href="#referenzen">Kunden</a>
+    <a href="#demo">VISION Demo</a>
+    <button class="btn-nav" onclick="document.getElementById('audit').scrollIntoView({behavior:'smooth'})">Website prüfen lassen</button>
+  </div>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-geo-1"></div>
+  <div class="hero-geo-2"></div>
+  <div class="hero-geo-3"></div>
+
+  <div class="hero-alert">
+    <div class="hero-alert-dot"></div>
+    <div class="hero-alert-text">
+      Jede verpasste Anfrage kostet Ihren Betrieb im Schnitt
+      <strong> 500–3.000 €</strong> —
+      und passiert täglich
+    </div>
+  </div>
+
+  <div class="hero-eyebrow reveal">Freiburg · Basel · Region Südwest</div>
+
+  <div class="hero-headline reveal delay-1">
+    Gemeinsam<br>
+    <span class="accent">gewinnen</span><br>
+    wir Ihre<br>
+    Zeit zurück
+  </div>
+
+  <div class="hero-bottom reveal delay-2">
+    <div class="hero-sub">
+      Ihre Webseite wird zum verlässlichen Mitarbeiter im Büro.
+      <strong>VISION</strong> nimmt Anfragen entgegen, bucht Termine
+      und beantwortet Kundenfragen – vollautomatisch, rund um die Uhr.
+      Wie bereits <strong>10+ Betriebe</strong> aus der Region.
+    </div>
+    <div class="hero-ctas">
+      <a href="https://metisweb.vision/webaudit" class="btn-lime">→ Website kostenlos prüfen lassen</a>
+      <a href="https://calendar.app.google/ScNHxNUQUGaSpq7g6" class="btn-outline" target="_blank">Erstgespräch buchen (30 min)</a>
+      <div class="cta-hint">5 Min · Kostenlos · Bericht per E-Mail</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TICKER ==================== -->
+<div class="ticker-wrap">
+  <div class="ticker-track" id="ticker">
+    <span><strong>4–5 Stunden</strong> Bürozeit <span class="sep">★</span> Pro Woche gespart</span>
+    <span><strong>10+ Betriebe</strong> in Freiburg-Basel <span class="sep">★</span> Vertrauen bereits</span>
+    <span><strong>48h</strong> <span class="sep">★</span> Bis zum ersten Entwurf</span>
+    <span>Anfragen <span class="sep">→</span> Automatisch bearbeitet</span>
+    <span>Termine <span class="sep">→</span> Selbstständig gebucht</span>
+    <span>Angebote <span class="sep">→</span> In 3 Klicks versendet</span>
+    <span>DSGVO-konform <span class="sep">★</span> Deutsche Server</span>
+    <span>Planbare Kosten <span class="sep">★</span> Fester Monatspreis</span>
+    <span><strong>4–5 Stunden</strong> Bürozeit <span class="sep">★</span> Pro Woche gespart</span>
+    <span><strong>10+ Betriebe</strong> in Freiburg-Basel <span class="sep">★</span> Vertrauen bereits</span>
+    <span><strong>48h</strong> <span class="sep">★</span> Bis zum ersten Entwurf</span>
+    <span>Anfragen <span class="sep">→</span> Automatisch bearbeitet</span>
+    <span>Termine <span class="sep">→</span> Selbstständig gebucht</span>
+    <span>Angebote <span class="sep">→</span> In 3 Klicks versendet</span>
+    <span>DSGVO-konform <span class="sep">★</span> Deutsche Server</span>
+    <span>Planbare Kosten <span class="sep">★</span> Fester Monatspreis</span>
+  </div>
+</div>
+
+<!-- ==================== PROBLEM ==================== -->
+<section class="problem-section">
+  <div class="section-eyebrow reveal">Das Problem — Was Sie täglich kostet</div>
+  <div class="display-xl reveal delay-1" style="font-size:clamp(3rem,7vw,7rem); margin-bottom:0;">
+    Ohne System<br>
+    <span class="accent">verlieren</span> Sie<br>
+    täglich Aufträge
+  </div>
+
+  <div class="problem-grid">
+    <div class="problem-list reveal delay-2">
+      <div class="problem-item">
+        <div class="problem-num">01</div>
+        <div class="problem-text">Telefon klingelt auf der Baustelle – Sie können nicht rangehen. <strong>Der Kunde ruft beim Mitbewerber an.</strong></div>
       </div>
-      <a href="kontakt.html" class="btn btn--primary btn--small nav__cta">Erstgespräch buchen</a>
-      <button class="nav__mobile-toggle" id="navToggle" aria-label="Menü öffnen">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <div class="problem-item">
+        <div class="problem-num">02</div>
+        <div class="problem-text">Termine hin und her schieben: 4 WhatsApps, 2 Anrufe – <strong>für einen einzigen Termin.</strong></div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">03</div>
+        <div class="problem-text">Angebote schreiben nach Feierabend: 45 Minuten Tippen – statt <strong>3 Klicks.</strong></div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">04</div>
+        <div class="problem-text">Dieselbe Frage zum 10. Mal beantworten: „Was kostet die Anfahrt?" – <strong>Ihre Zeit ist zu wertvoll dafür.</strong></div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">05</div>
+        <div class="problem-text">Anfragen gehen in WhatsApp, E-Mail und Zettel unter. <strong>Kein Überblick. Keine Kontrolle.</strong></div>
+      </div>
     </div>
 
-    <!-- Mobile Menu -->
-    <div class="nav__mobile-menu" id="mobileMenu">
-      <a href="leistungen.html">Leistungen</a>
-      <a href="pakete.html">Pakete</a>
-      <a href="referenzen.html">Referenzen</a>
-      <a href="kontakt.html">Kontakt</a>
-      <a href="kontakt.html" class="btn btn--primary">Erstgespräch buchen</a>
-    </div>
-  </nav>
+    <div class="problem-visual reveal delay-3">
+      <div class="problem-visual-title">Kosten verpasster Anfragen / Monat</div>
+      <div class="cost-display">3.600 €</div>
+      <div class="cost-label">Durchschnittlicher monatlicher Verlust · 3 Anfragen/Woche · Ø 300 €/Auftrag</div>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero__content">
-        <h1 class="hero__headline reveal">Webseiten, die Ihr Büro entlasten</h1>
-        <p class="hero__subtext reveal">Anfragen, Termine und Rückrufe laufen automatisch ab. So sparen Sie im Schnitt 4–5 Stunden pro Woche. 10+ Betriebe aus der Region nutzen das bereits.</p>
-        <div class="hero__actions reveal">
-          <a href="kontakt.html" class="btn btn--primary btn--large">Erstgespräch vereinbaren</a>
-          <a href="leistungen.html" class="btn btn--secondary btn--large">Mehr erfahren</a>
-        </div>
+      <div class="cost-bar-wrap">
+        <div class="cost-bar-label"><span>Verpasste Anrufe</span><span>40%</span></div>
+        <div class="cost-bar"><div class="cost-bar-fill" style="--fill:40%"></div></div>
+      </div>
+      <div class="cost-bar-wrap">
+        <div class="cost-bar-label"><span>Zu späte Antworten</span><span>30%</span></div>
+        <div class="cost-bar"><div class="cost-bar-fill" style="--fill:30%; animation-delay:0.7s"></div></div>
+      </div>
+      <div class="cost-bar-wrap">
+        <div class="cost-bar-label"><span>Kein Online-Termin</span><span>20%</span></div>
+        <div class="cost-bar"><div class="cost-bar-fill" style="--fill:20%; animation-delay:0.9s"></div></div>
+      </div>
+      <div class="cost-bar-wrap">
+        <div class="cost-bar-label"><span>Keine klare FAQ</span><span>10%</span></div>
+        <div class="cost-bar"><div class="cost-bar-fill" style="--fill:10%; animation-delay:1.1s"></div></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Versprechen (3 große Text-Blöcke) -->
-  <section class="section">
-    <div class="container">
-
-      <div class="promise reveal">
-        <p class="promise__text">
-          Jede verpasste Anfrage kostet Sie bares Geld. <span>Ihre Webseite erstellt sofort passende Antwort-Entwürfe. Sie prüfen kurz, klicken auf Senden — statt 15 Minuten nur noch 50 Sekunden.</span>
-        </p>
-      </div>
-
-      <div class="promise reveal">
-        <p class="promise__text">
-          Schluss mit Termin-Pingpong. <span>Kunden sehen freie Zeitfenster und buchen selbstständig — rund um die Uhr. Das ewige Hin-und-Her am Telefon entfällt komplett.</span>
-        </p>
-      </div>
-
-      <div class="promise reveal">
-        <p class="promise__text">
-          Kein Zettelchaos mehr. <span>Kontaktformular, Anfragen und Termine laufen zentral an einem Ort zusammen. Sie sehen auf einen Blick, was zu tun ist.</span>
-        </p>
-      </div>
-
+<!-- ==================== STATS ==================== -->
+<div class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-item reveal">
+      <div class="stat-num">4–5<span class="acc">h</span></div>
+      <div class="stat-desc">Bürozeit gespart<br>pro Woche</div>
     </div>
-  </section>
+    <div class="stat-item reveal delay-1">
+      <div class="stat-num"><span class="acc">50</span>s</div>
+      <div class="stat-desc">Statt 15 Min –<br>Anfrage bearbeiten</div>
+    </div>
+    <div class="stat-item reveal delay-2">
+      <div class="stat-num">10<span class="acc">+</span></div>
+      <div class="stat-desc">Betriebe<br>Freiburg-Basel</div>
+    </div>
+    <div class="stat-item reveal delay-3">
+      <div class="stat-num">24<span class="acc">/7</span></div>
+      <div class="stat-desc">Automatisch<br>erreichbar</div>
+    </div>
+  </div>
+</div>
 
-  <!-- Ergebnisse / Kennzahlen -->
-  <section class="section section--alt">
-    <div class="container">
-      <div class="section__header reveal">
-        <span class="section__label">Ergebnisse</span>
-        <h2>Zahlen, die für sich sprechen</h2>
+<!-- ==================== LEISTUNGEN ==================== -->
+<section class="features-section" id="leistungen">
+  <div class="section-eyebrow lime reveal">01 — Was Ihre Webseite übernimmt</div>
+  <div class="display-xl reveal delay-1" style="font-size:clamp(3rem,7vw,7rem);">
+    Ihr digitales<br>
+    <span class="accent">Büro</span> –<br>
+    nie krank
+  </div>
+  <div class="mono-body reveal delay-2" style="max-width:560px; margin-top:16px;">
+    Kein Urlaub. Kein Feierabend. Kein klingelndes Telefon zur falschen Zeit.
+    Ihre Webseite erledigt die Büroarbeit, während Sie auf der Baustelle sind.
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card reveal" data-num="01">
+      <div class="feature-title">Anfragen in Sekunden vorbereiten</div>
+      <div class="feature-desc">Ein Kunde fragt nach einem Termin? Ihre Webseite erstellt sofort einen Antwort-Entwurf. Sie prüfen kurz, klicken Senden – fertig.</div>
+      <div class="feature-result">Statt 15 Min nur noch 50 Sekunden</div>
+    </div>
+    <div class="feature-card reveal delay-1" data-num="02">
+      <div class="feature-title">Schluss mit Termin-Pingpong</div>
+      <div class="feature-desc">Ihr Kalender ist online verbunden. Kunden sehen freie Zeitfenster und buchen selbstständig – rund um die Uhr. Das ewige Hin-und-Her entfällt.</div>
+      <div class="feature-result">Termin steht – ohne Telefonat</div>
+    </div>
+    <div class="feature-card reveal" data-num="03">
+      <div class="feature-title">Standardfragen automatisch klären</div>
+      <div class="feature-desc">„Was kostet die Anfahrt?" – Ein Assistent beantwortet häufige Fragen sofort. Kunden warten nicht, Sie wiederholen sich nicht.</div>
+      <div class="feature-result">Kein Telefonat für Standardfragen</div>
+    </div>
+    <div class="feature-card reveal delay-1" data-num="04">
+      <div class="feature-title">Kein Zettelchaos mehr</div>
+      <div class="feature-desc">Anfragen und Termine laufen zentral zusammen. Sie sehen auf einen Blick, was zu tun ist. Keine vergessene Anfrage, kein Zettel auf dem Beifahrersitz.</div>
+      <div class="feature-result">Voller Überblick, jederzeit</div>
+    </div>
+    <div class="feature-card reveal" data-num="05">
+      <div class="feature-title">Angebote in 3 Klicks</div>
+      <div class="feature-desc">Der Interessent gibt Daten direkt online ein. Daraus entsteht ein strukturierter Entwurf in Ihrem Postfach. Vom Kontakt zum Angebot in 3 Klicks.</div>
+      <div class="feature-result">45 Min Tippen → 3 Klicks</div>
+    </div>
+    <div class="feature-card reveal delay-1" data-num="06">
+      <div class="feature-title">Anrufe werden planbar</div>
+      <div class="feature-desc">Wenn Sie nicht rangehen können, nimmt ein Assistent den Anruf entgegen und wandelt ihn in einen Rückruf-Termin um. Sie entscheiden, wann Sie telefonieren.</div>
+      <div class="feature-result">Keine verpassten Kunden mehr</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PROZESS ==================== -->
+<section class="process-section">
+  <div class="section-eyebrow lime reveal">02 — So arbeiten wir zusammen</div>
+  <div class="display-xl reveal delay-1" style="font-size:clamp(2.5rem,6vw,6rem);">
+    In 4 Schritten<br>
+    zum entlasteten<br>
+    <span class="accent">Büro</span>
+  </div>
+
+  <div class="process-steps reveal delay-2">
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <div class="step-title">Erstgespräch</div>
+      <div class="step-body">30 Minuten. Wir klären, wo bei Ihnen im Büro der Schuh drückt. Danach wissen Sie genau, ob unsere Lösung zu Ihrem Betrieb passt.</div>
+      <div class="step-tag">Kostenlos & unverbindlich</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <div class="step-title">Angebot</div>
+      <div class="step-body">Sie erhalten ein transparentes Angebot zum festen Monatspreis. Klare Leistungen, alles schriftlich, keine Überraschungen.</div>
+      <div class="step-tag">Fester Preis. Klar.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03</div>
+      <div class="step-title">Umsetzung</div>
+      <div class="step-body">Wir bauen Ihre Webseite. Sie geben Feedback, wir passen an. Erst wenn Sie zufrieden sind, gehen wir live.</div>
+      <div class="step-tag">48h bis Entwurf</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">04</div>
+      <div class="step-title">Begleitung</div>
+      <div class="step-body">Auch nach dem Start sind wir da. Updates, kleine Änderungen, Fragen – wir bleiben Ihr regionaler Ansprechpartner. Ohne Aufpreis.</div>
+      <div class="step-tag">24/7 Support</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PREISE ==================== -->
+<section class="pricing-section" id="preise">
+  <div class="section-eyebrow lime reveal">03 — Transparente Preise</div>
+  <div class="display-xl reveal delay-1" style="font-size:clamp(2.5rem,6vw,6rem);">
+    Klare Kosten.<br>
+    <span class="accent">Keine</span><br>
+    Überraschungen.
+  </div>
+  <div class="mono-body reveal delay-2" style="max-width:520px; margin-top:16px;">
+    Fester Monatspreis, alles inklusive. Mindestlaufzeit 24 Monate,
+    danach monatlich kündbar. Keine versteckten Gebühren.
+  </div>
+
+  <div class="pricing-grid reveal delay-2">
+    <div class="pricing-card">
+      <div class="pricing-name">Start</div>
+      <div class="pricing-price">149<span class="acc">€</span></div>
+      <div class="pricing-period">/ Monat · inkl. MwSt.</div>
+      <div class="pricing-features">
+        <div class="pricing-feat"><span class="check">✓</span>Professionelle Webseite (5 Seiten)</div>
+        <div class="pricing-feat"><span class="check">✓</span>Mobile-optimiert</div>
+        <div class="pricing-feat"><span class="check">✓</span>Kontaktformular mit Benachrichtigung</div>
+        <div class="pricing-feat"><span class="check">✓</span>Google Business Pflege</div>
+        <div class="pricing-feat"><span class="check">✓</span>Lokale SEO-Grundoptimierung</div>
+        <div class="pricing-feat"><span class="x">–</span>Online-Terminbuchung</div>
+        <div class="pricing-feat"><span class="x">–</span>KI-Chatbot / Sprachassistent</div>
       </div>
-      <div class="stats reveal-stagger">
-        <div class="stat">
-          <div class="stat__number" data-target="10" data-suffix="+">0</div>
-          <div class="stat__label">Betriebe aus der Region</div>
-        </div>
-        <div class="stat">
-          <div class="stat__number" data-target="5" data-suffix="h">0</div>
-          <div class="stat__label">Bürozeit pro Woche gespart</div>
-        </div>
-        <div class="stat">
-          <div class="stat__number" data-target="50" data-suffix="s">0</div>
-          <div class="stat__label">statt 15 Minuten pro Anfrage</div>
-        </div>
+      <button class="pricing-cta" onclick="document.getElementById('final-cta').scrollIntoView({behavior:'smooth'})">Erstgespräch buchen</button>
+    </div>
+
+    <div class="pricing-card featured">
+      <div class="pricing-name">Digital Büro</div>
+      <div class="pricing-price">299<span class="acc">€</span></div>
+      <div class="pricing-period">/ Monat · inkl. MwSt.</div>
+      <div class="pricing-features">
+        <div class="pricing-feat"><span class="check">✓</span>Professionelle Webseite (unbegrenzt)</div>
+        <div class="pricing-feat"><span class="check">✓</span>Online-Terminbuchung (24/7)</div>
+        <div class="pricing-feat"><span class="check">✓</span>Automatische Antwort-Entwürfe</div>
+        <div class="pricing-feat"><span class="check">✓</span>KI-Chatbot für häufige Fragen</div>
+        <div class="pricing-feat"><span class="check">✓</span>Google Bewertungen-Integration</div>
+        <div class="pricing-feat"><span class="check">✓</span>Anfragen-Dashboard</div>
+        <div class="pricing-feat"><span class="check">✓</span>Priority Support</div>
+      </div>
+      <button class="pricing-cta" onclick="window.open('https://calendar.app.google/ScNHxNUQUGaSpq7g6','_blank')">→ Jetzt starten</button>
+    </div>
+
+    <div class="pricing-card">
+      <div class="pricing-name">VISION Pro</div>
+      <div class="pricing-price">499<span class="acc">€</span></div>
+      <div class="pricing-period">/ Monat · inkl. MwSt.</div>
+      <div class="pricing-features">
+        <div class="pricing-feat"><span class="check">✓</span>Alles aus Digital Büro</div>
+        <div class="pricing-feat"><span class="check">✓</span>Voice Agent (nimmt Anrufe entgegen)</div>
+        <div class="pricing-feat"><span class="check">✓</span>Angebotsrechner-Integration</div>
+        <div class="pricing-feat"><span class="check">✓</span>CRM-Anbindung</div>
+        <div class="pricing-feat"><span class="check">✓</span>WhatsApp-Automatisierung</div>
+        <div class="pricing-feat"><span class="check">✓</span>Monatliches Strategie-Gespräch</div>
+        <div class="pricing-feat"><span class="check">✓</span>Dedizierter Ansprechpartner</div>
+      </div>
+      <button class="pricing-cta" onclick="document.getElementById('final-cta').scrollIntoView({behavior:'smooth'})">Erstgespräch buchen</button>
+    </div>
+  </div>
+  <div class="pricing-note reveal">Alle Preise inkl. Hosting, DSGVO-Konformität, deutsche Server & laufender Betreuung. Mindestlaufzeit 24 Monate.</div>
+</section>
+
+<!-- ==================== FALLSTUDIEN ==================== -->
+<section class="cases-section">
+  <div class="section-eyebrow lime reveal">04 — Vorher / Nachher</div>
+  <div class="display-xl reveal delay-1" style="font-size:clamp(2.5rem,6vw,6rem);">
+    Echte Betriebe.<br>
+    <span class="accent">Echte</span> Zahlen.
+  </div>
+
+  <div class="cases-list reveal delay-2">
+    <div class="case-item">
+      <div class="case-tag">SHK</div>
+      <div>
+        <div class="case-client">Sanitärbetrieb<br>Kern GmbH</div>
+        <div class="case-location">— Freiburg-Mitte</div>
+      </div>
+      <div class="case-result-grid">
+        <div class="case-metric"><div class="case-metric-num">+5</div><div class="case-metric-label">Anfragen/Woche mehr</div></div>
+        <div class="case-metric"><div class="case-metric-num">4h</div><div class="case-metric-label">Bürozeit/Woche gespart</div></div>
+      </div>
+      <div class="case-quote">"Kunden buchen jetzt selbst – ich muss nicht mehr telefonieren."</div>
+    </div>
+    <div class="case-item">
+      <div class="case-tag">Elektro</div>
+      <div>
+        <div class="case-client">Elektro Müller<br>& Söhne</div>
+        <div class="case-location">— Lörrach</div>
+      </div>
+      <div class="case-result-grid">
+        <div class="case-metric"><div class="case-metric-num">50s</div><div class="case-metric-label">Statt 15 Min Antwortzeit</div></div>
+        <div class="case-metric"><div class="case-metric-num">0</div><div class="case-metric-label">Verpasste Anfragen/Monat</div></div>
+      </div>
+      <div class="case-quote">"Seit dem Chatbot geht keine Anfrage mehr unter. Absolute Empfehlung."</div>
+    </div>
+    <div class="case-item">
+      <div class="case-tag">Dach</div>
+      <div>
+        <div class="case-client">Dach & Fassade<br>Weber</div>
+        <div class="case-location">— Basel-Land</div>
+      </div>
+      <div class="case-result-grid">
+        <div class="case-metric"><div class="case-metric-num">+34%</div><div class="case-metric-label">Angebotsabschlussrate</div></div>
+        <div class="case-metric"><div class="case-metric-num">3h</div><div class="case-metric-label">Angebote schneller</div></div>
+      </div>
+      <div class="case-quote">"Der Angebotsrechner hat unsere Abschlussrate um ein Drittel erhöht."</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== REFERENZEN ==================== -->
+<section class="refs-section" id="referenzen">
+  <div class="section-eyebrow lime reveal">05 — Was Kunden sagen</div>
+  <div class="display-xl reveal delay-1" style="font-size:clamp(2.5rem,6vw,6rem);">
+    Stimmen aus<br>
+    der <span class="accent">Region</span>
+  </div>
+
+  <div class="refs-grid reveal delay-2">
+    <div class="ref-card">
+      <div class="ref-stars">★ ★ ★ ★ ★</div>
+      <div class="ref-text">"Seit dem neuen Chatbot erhalten wir täglich 3–5 qualifizierte Anfragen mehr – ohne dass meine Mitarbeiter den Hörer abnehmen müssen."</div>
+      <div class="ref-divider"></div>
+      <div class="ref-author">Thomas Kern</div>
+      <div class="ref-meta">Sanitär- & Heizungsbau · Freiburg</div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-stars">★ ★ ★ ★ ★</div>
+      <div class="ref-text">"Die Terminbuchung spart uns 3 Stunden pro Woche. Kunden buchen sonntags um 22 Uhr – das hätte ich nie für möglich gehalten."</div>
+      <div class="ref-divider"></div>
+      <div class="ref-author">Sandra Maier</div>
+      <div class="ref-meta">Dachdeckerbetrieb · Basel-Landschaft</div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-stars">★ ★ ★ ★ ★</div>
+      <div class="ref-text">"Endlich kein Zettelchaos mehr. Alles läuft an einem Ort zusammen. Der ROI war nach 6 Wochen positiv – das hätte ich nicht erwartet."</div>
+      <div class="ref-divider"></div>
+      <div class="ref-author">Markus Roth</div>
+      <div class="ref-meta">Elektriker · Lörrach</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== VISION DEMO ==================== -->
+<section class="demo-section" id="demo">
+  <div class="section-eyebrow lime reveal">06 — VISION Live-Demo</div>
+  <div class="display-xl reveal delay-1" style="font-size:clamp(2.5rem,6vw,6rem);">
+    Sprechen Sie<br>
+    jetzt mit<br>
+    <span class="accent">VISION</span>
+  </div>
+
+  <div class="demo-inner reveal delay-2">
+    <div class="demo-info">
+      <div class="mono-body">
+        VISION ist Ihr KI-Assistent – er beantwortet Fragen zu unseren Leistungen,
+        erklärt Preise und vereinbart direkt einen Termin mit uns.
+        Genau so wird er auch auf Ihrer Webseite arbeiten.
+      </div>
+      <div class="demo-features">
+        <div class="demo-feat">Fragen zu Leistungen & Preisen beantworten</div>
+        <div class="demo-feat">Termine direkt vereinbaren</div>
+        <div class="demo-feat">24/7 verfügbar, keine Wartezeit</div>
+        <div class="demo-feat">Auf Ihre Branche trainiert</div>
+        <div class="demo-feat">DSGVO-konform, deutsch</div>
+      </div>
+      <a href="https://calendar.app.google/ScNHxNUQUGaSpq7g6" target="_blank" class="btn-lime" style="margin-top:8px;">→ Lieber direkt Termin buchen</a>
+    </div>
+    <div class="demo-chat">
+      <div class="chat-msg bot">
+        <span class="bot-label">VISION — KI-Assistent</span>
+        Guten Tag! Ich bin VISION, der digitale Assistent von MetisWeb.Vision. Wie kann ich Ihnen helfen? Ich beantworte Fragen zu unseren Leistungen oder vereinbare gerne direkt einen Termin.
+      </div>
+      <div class="chat-msg user">Was kostet das digitale Büro-Paket?</div>
+      <div class="chat-msg bot">
+        <span class="bot-label">VISION</span>
+        Das "Digital Büro"-Paket kostet 299 €/Monat inkl. MwSt. – das beinhaltet Online-Terminbuchung, KI-Chatbot, automatische Anfragenbearbeitung und dauerhaften Support. Soll ich für Sie einen kostenlosen Beratungstermin vereinbaren?
+      </div>
+      <div class="chat-input-row">
+        <input class="chat-input" placeholder="Ihre Frage an VISION..." id="chatInput">
+        <button class="chat-send" onclick="sendDemo()">Senden</button>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Prozess -->
-  <section class="section">
-    <div class="container">
-      <div class="section__header reveal">
-        <span class="section__label">Prozess</span>
-        <h2>In drei Schritten zur Entlastung</h2>
+<!-- ==================== WEB AUDIT ==================== -->
+<section class="audit-section" id="audit">
+  <div class="section-eyebrow lime reveal" style="justify-content:center;">07 — Kostenloser Web-Audit</div>
+  <div class="audit-headline reveal delay-1">
+    Wie stark ist<br>Ihre <span class="acc">Website</span><br>wirklich?
+  </div>
+  <div class="audit-sub reveal delay-2">
+    In 5 Minuten analysieren wir Ihre bestehende Website – Design, Technik, Ladezeit und Conversion.
+    Sie erhalten einen detaillierten Bericht per E-Mail. Kostenlos. Unverbindlich.
+  </div>
+  <div class="audit-badges reveal delay-2">
+    <div class="audit-badge"><strong>5 Min</strong>Ausfüllen</div>
+    <div class="audit-badge"><strong>Free</strong>Kostenlos</div>
+    <div class="audit-badge"><strong>PDF</strong>Bericht per E-Mail</div>
+  </div>
+  <div class="audit-cta-group reveal delay-3">
+    <a href="https://metisweb.vision/webaudit" class="btn-lime">→ Website jetzt prüfen lassen</a>
+    <button class="btn-outline" onclick="document.getElementById('formular').scrollIntoView({behavior:'smooth'})">Empfehlungsbericht anfordern</button>
+  </div>
+</section>
+
+<!-- ==================== LEAD FORMULAR ==================== -->
+<section class="form-section" id="formular">
+  <div class="section-eyebrow lime reveal">08 — Empfehlungsbericht</div>
+  <div class="display-xl reveal delay-1" style="font-size:clamp(2.5rem,5.5vw,5.5rem);">
+    In 2 Minuten zu<br>
+    Ihrer <span class="accent">persönlichen</span><br>Empfehlung
+  </div>
+
+  <div class="form-inner">
+    <div class="form-info reveal">
+      <div class="mono-body">
+        Keine Zeit für ein Gespräch? Kein Problem. Füllen Sie das Formular aus –
+        wir analysieren Ihre Situation und schicken Ihnen konkrete Empfehlungen per E-Mail.
+        Kostenlos, unverbindlich, ohne Verkaufsgespräch.
       </div>
-      <div class="process reveal-stagger">
-        <div class="process__step">
-          <div class="process__number">01</div>
-          <h3 class="process__title">Erstgespräch</h3>
-          <p class="process__text">In 30 Minuten klären wir, wo bei Ihnen im Büro der Schuh drückt. Danach wissen Sie genau, ob unsere Lösung zu Ihrem Betrieb passt.</p>
-        </div>
-        <div class="process__step">
-          <div class="process__number">02</div>
-          <h3 class="process__title">Umsetzung</h3>
-          <p class="process__text">Wir bauen Ihre Webseite. Sie geben Feedback, wir passen an. Erst wenn alles sitzt, gehen wir live.</p>
-        </div>
-        <div class="process__step">
-          <div class="process__number">03</div>
-          <h3 class="process__title">Begleitung</h3>
-          <p class="process__text">Auch nach dem Start sind wir an Ihrer Seite. Updates, Änderungen oder Fragen erledigen wir im Hintergrund.</p>
-        </div>
+      <div class="form-points">
+        <div class="form-point">Konkrete Empfehlung für Ihren Betrieb</div>
+        <div class="form-point">Keine Verkaufsstrategie – nur ehrliche Analyse</div>
+        <div class="form-point">Kostenlos & ohne Verpflichtung</div>
+        <div class="form-point">Antwort innerhalb von 24 Stunden</div>
+        <div class="form-point">Von Menschen aus der Region – nicht aus einem Callcenter</div>
       </div>
     </div>
-  </section>
 
-  <!-- CTA -->
-  <section class="section section--alt">
-    <div class="container">
-      <div class="cta-section reveal">
-        <h2 class="cta-section__headline">Bereit für ein entlastetes Büro</h2>
-        <p class="cta-section__text">Kostenlos und unverbindlich. In 30 Minuten wissen Sie, ob es passt.</p>
-        <a href="kontakt.html" class="btn btn--primary btn--large">Erstgespräch vereinbaren</a>
+    <div class="leadform reveal delay-2">
+      <div class="form-group">
+        <div class="form-label">Ihr Name *</div>
+        <input class="form-input" type="text" placeholder="Max Mustermann">
       </div>
+      <div class="form-group">
+        <div class="form-label">E-Mail-Adresse *</div>
+        <input class="form-input" type="email" placeholder="max@musterbetrieb.de">
+      </div>
+      <div class="form-group">
+        <div class="form-label">Ihre Website (optional)</div>
+        <input class="form-input" type="url" placeholder="www.mein-betrieb.de">
+      </div>
+      <div class="form-group">
+        <div class="form-label">Was trifft bei Ihnen aktuell zu? *</div>
+        <div class="check-group">
+          <label class="check-item"><input type="checkbox"><span>Telefonanrufe während der Arbeit</span></label>
+          <label class="check-item"><input type="checkbox"><span>Termine hin und her schieben</span></label>
+          <label class="check-item"><input type="checkbox"><span>Angebote schreiben nach Feierabend</span></label>
+          <label class="check-item"><input type="checkbox"><span>Anfragen gehen unter oder werden zu spät beantwortet</span></label>
+          <label class="check-item"><input type="checkbox"><span>Immer dieselben Kundenfragen beantworten</span></label>
+          <label class="check-item"><input type="checkbox"><span>Keine klare Übersicht über offene Anfragen</span></label>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">Haben Sie bereits eine Website? *</div>
+        <select class="form-input" style="cursor:pointer;">
+          <option value="">Bitte wählen</option>
+          <option>Ja, eine Website ist vorhanden</option>
+          <option>Ja, aber sie ist veraltet</option>
+          <option>Nein, noch keine Website</option>
+        </select>
+      </div>
+      <label class="check-item" style="padding:0; margin-top:4px;">
+        <input type="checkbox">
+        <span style="font-size:0.58rem; letter-spacing:0.5px; text-transform:none; line-height:1.6;">
+          Ich habe die <a href="https://metisweb.vision/datenschutz" style="color:var(--blue);">Datenschutzerklärung</a> gelesen und stimme zu. *
+        </span>
+      </label>
+      <button class="form-submit">→ Empfehlungsbericht einfordern</button>
+      <div class="form-legal">Sie erhalten Ihre Empfehlung kostenlos per E-Mail innerhalb von 24 Stunden. Kein Callcenter. Menschen aus der Region.</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div class="footer__brand">
-          <a href="/" class="nav__logo">handwerker<span>.vision</span></a>
-          <p>Digitale Lösungen für Handwerksbetriebe in Freiburg, Lörrach und Basel.</p>
-        </div>
-        <div>
-          <h4 class="footer__heading">Seiten</h4>
-          <div class="footer__links">
-            <a href="leistungen.html" class="footer__link">Leistungen</a>
-            <a href="pakete.html" class="footer__link">Pakete</a>
-            <a href="referenzen.html" class="footer__link">Referenzen</a>
-            <a href="kontakt.html" class="footer__link">Kontakt</a>
-          </div>
-        </div>
-        <div>
-          <h4 class="footer__heading">Kontakt</h4>
-          <div class="footer__links">
-            <a href="tel:+4976159414747" class="footer__link">+49 761 59414747</a>
-            <a href="mailto:kontakt@handwerker.vision" class="footer__link">kontakt@handwerker.vision</a>
-          </div>
-        </div>
-        <div>
-          <h4 class="footer__heading">Rechtliches</h4>
-          <div class="footer__links">
-            <a href="impressum.html" class="footer__link">Impressum</a>
-            <a href="datenschutz.html" class="footer__link">Datenschutz</a>
-          </div>
-        </div>
+<!-- ==================== FAQ ==================== -->
+<section class="faq-section" id="faq">
+  <div class="section-eyebrow lime reveal">09 — Häufige Fragen</div>
+  <div class="display-xl reveal delay-1" style="font-size:clamp(2.5rem,5.5vw,5.5rem);">
+    Ihre Fragen.<br>
+    <span class="accent">Klare</span> Antworten.
+  </div>
+
+  <div class="faq-list reveal delay-2">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q-text">Was kostet das und wann rechnet es sich?</div>
+        <div class="faq-toggle">+</div>
       </div>
-      <div class="footer__bottom">
-        <p class="footer__copyright">&copy; 2026 handwerker.vision — METISWEB VISION</p>
-        <div class="footer__legal">
-          <a href="impressum.html" class="footer__link">Impressum</a>
-          <a href="datenschutz.html" class="footer__link">Datenschutz</a>
-        </div>
-      </div>
+      <div class="faq-a">Die Investition richtet sich nach dem gewünschten Umfang. Im Schnitt rechnet sich das System bereits nach der ersten gesicherten Anfrage oder durch die Zeit, die Sie täglich bei der Büroarbeit einsparen. Bei 3 gesicherten Anfragen pro Monat à 300 € ist das Paket bereits bezahlt.</div>
     </div>
-  </footer>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q-text">Muss ich mich mit Technik auskennen?</div>
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-a">Nein. Wir kümmern uns um die gesamte Technik im Hintergrund. Sie erhalten ein System, das einfach zu bedienen ist und zuverlässig funktioniert – genau wie Ihr bestes Werkzeug. Kein IT-Wissen erforderlich.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q-text">Wie viel Zeit muss ich investieren?</div>
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-a">Nur sehr wenig. Nach einem kurzen Erstgespräch und Ihrem Feedback während der Bauphase läuft das meiste von selbst. Danach übernimmt die Webseite die Arbeit und entlastet Sie täglich.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q-text">Was zahle ich genau und wie lange bin ich gebunden?</div>
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-a">Sie zahlen einen festen Monatsbetrag (149 € / 299 € / 499 €) für den vollen Service inklusive Wartung. Die Mindestlaufzeit beträgt 24 Monate, danach ist der Vertrag jederzeit monatlich kündbar. Keine versteckten Gebühren.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q-text">Gibt es Support nach dem Start?</div>
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-a">Absolut. Chat-Hilfe läuft 24/7. Für alles andere: Termin buchen, wir rufen zurück. Während der gesamten Laufzeit. Ohne Aufpreis. Und: Wir sitzen in Freiburg – kein Callcenter.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q-text">Was ist, wenn ich schon eine Website habe?</div>
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-a">Kein Problem. Wir prüfen Ihre bestehende Website kostenlos mit unserem Web-Audit (5 Minuten, Bericht per E-Mail) und zeigen konkret, was verbessert werden kann – ohne Verkaufsdruck.</div>
+    </div>
+  </div>
+</section>
 
-  <!-- Scripts -->
-  <script src="js/navigation.js"></script>
-  <script src="js/animations.js"></script>
-  <script src="js/counter.js"></script>
-  <script src="js/main.js"></script>
+<!-- ==================== FINAL CTA ==================== -->
+<section class="final-cta" id="final-cta">
+  <div class="section-eyebrow lime reveal" style="justify-content:center;">Jetzt starten</div>
+  <div class="final-headline reveal delay-1">
+    Gemeinsam<br>
+    <span class="acc">gewinnen</span><br>
+    wir Ihre<br>
+    Zeit zurück
+  </div>
+  <div class="final-sub reveal delay-2">
+    30 Minuten Erstgespräch – wir analysieren Ihren Betrieb
+    und zeigen konkret, wie viel Zeit und Geld Sie monatlich
+    zurückgewinnen können. Unverbindlich. Aus der Region.
+  </div>
+  <div class="final-cta-row reveal delay-3">
+    <a href="https://calendar.app.google/ScNHxNUQUGaSpq7g6" target="_blank" class="btn-lime">→ Erstgespräch buchen</a>
+    <a href="https://metisweb.vision/webaudit" class="btn-outline">Website kostenlos prüfen</a>
+  </div>
+</section>
+
+<!-- CHAT FAB -->
+<button class="chat-fab" style="background:var(--blue)" title="VISION – KI-Assistent" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+  </svg>
+</button>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-l">&copy; 2026 METISWEB VISION · Freiburg im Breisgau</div>
+  <div class="footer-c">MW·V</div>
+  <div class="footer-r">
+    <a href="https://metisweb.vision/kontaktformular">Kontakt</a> &nbsp;·&nbsp;
+    <a href="https://metisweb.vision/datenschutz">Datenschutz</a> &nbsp;·&nbsp;
+    <a href="https://metisweb.vision/impressum">Impressum</a>
+  </div>
+</footer>
+
+<script>
+/* Cursor */
+const cur = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top  = e.clientY + 'px';
+});
+document.addEventListener('mousedown', () => cur.style.transform = 'translate(-50%,-50%) scale(2.2)');
+document.addEventListener('mouseup',   () => cur.style.transform = 'translate(-50%,-50%) scale(1)');
+
+/* Reveal */
+const revEls = document.querySelectorAll('.reveal');
+const revObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+revEls.forEach(el => revObserver.observe(el));
+
+/* FAQ */
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+/* Demo chat */
+function sendDemo() {
+  const input = document.getElementById('chatInput');
+  const val = input.value.trim();
+  if (!val) return;
+  const chat = document.querySelector('.demo-chat');
+  const userMsg = document.createElement('div');
+  userMsg.className = 'chat-msg user';
+  userMsg.textContent = val;
+  chat.insertBefore(userMsg, document.querySelector('.chat-input-row'));
+  input.value = '';
+  setTimeout(() => {
+    const botMsg = document.createElement('div');
+    botMsg.className = 'chat-msg bot';
+    botMsg.innerHTML = '<span class="bot-label">VISION</span>Danke für Ihre Frage! Ich verbinde Sie gerne mit einem unserer Berater oder vereinbare direkt einen Termin. Alternativ besuchen Sie unsere vollständige Demo unter metisweb.vision.';
+    chat.insertBefore(botMsg, document.querySelector('.chat-input-row'));
+    chat.scrollTop = chat.scrollHeight;
+  }, 900);
+}
+document.getElementById('chatInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') sendDemo();
+});
+
+/* Cost bar animation on scroll */
+const bars = document.querySelectorAll('.cost-bar-fill');
+if (bars.length) {
+  new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.width = e.target.style.getPropertyValue('--fill') || '40%';
+      }
+    });
+  }, { threshold: 0.3 }).observe(bars[0]);
+}
+</script>
 </body>
 </html>
