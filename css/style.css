@@ -1934,7 +1934,7 @@ footer {
 }
 
 @media (max-width: 390px) {
-  .hero-headline { font-size: 3.0rem; }
+  .hero-headline { font-size: 3.0rem !important; }
 
   /* Section-Headlines kleiner */
   .display-xl { font-size: clamp(2rem, 6vw, 3rem) !important; }
