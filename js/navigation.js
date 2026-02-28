@@ -49,4 +49,20 @@
       }
     });
   }
+
+  // Mobile Sticky CTA — show after scrolling past hero
+  var stickyBtn = document.getElementById('mobileStickyBtn');
+  var heroSection = document.querySelector('.hero');
+  if (stickyBtn && heroSection) {
+    function checkSticky() {
+      var heroBottom = heroSection.getBoundingClientRect().bottom;
+      if (heroBottom < 0) {
+        stickyBtn.classList.add('visible');
+      } else {
+        stickyBtn.classList.remove('visible');
+      }
+    }
+    window.addEventListener('scroll', checkSticky, { passive: true });
+    checkSticky();
+  }
 })();
