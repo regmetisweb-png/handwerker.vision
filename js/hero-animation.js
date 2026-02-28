@@ -1,19 +1,16 @@
 /**
- * Hero Animation — Partikel-Netzwerk + KI-Typing-Effekt
+ * Hero Animation — Datenfluss-Netzwerk (300% Intensität)
  */
 (function () {
-  // ============================================================
-  // PARTICLE NETWORK
-  // ============================================================
   var canvas = document.getElementById('heroCanvas');
   if (!canvas) return;
 
   var ctx = canvas.getContext('2d');
   var particles = [];
   var mouse = { x: -9999, y: -9999 };
-  var PARTICLE_COUNT = 50;
-  var CONNECTION_DIST = 130;
-  var MOUSE_DIST = 180;
+  var PARTICLE_COUNT = 150;
+  var CONNECTION_DIST = 200;
+  var MOUSE_DIST = 280;
   var animId;
 
   function resize() {
@@ -31,9 +28,9 @@
       particles.push({
         x: Math.random() * w,
         y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        r: Math.random() * 2 + 1
+        vx: (Math.random() - 0.5) * 1.0,
+        vy: (Math.random() - 0.5) * 1.0,
+        r: Math.random() * 3 + 1.5
       });
     }
   }
@@ -63,10 +60,10 @@
         var dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist < CONNECTION_DIST) {
-          var alpha = (1 - dist / CONNECTION_DIST) * 0.15;
+          var alpha = (1 - dist / CONNECTION_DIST) * 0.25;
           ctx.beginPath();
           ctx.strokeStyle = 'rgba(36,99,235,' + alpha + ')';
-          ctx.lineWidth = 0.5;
+          ctx.lineWidth = 0.8;
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
           ctx.stroke();
@@ -86,35 +83,38 @@
       var dist = Math.sqrt(dx * dx + dy * dy);
 
       if (dist < MOUSE_DIST) {
-        var alpha = (1 - dist / MOUSE_DIST) * 0.3;
+        var alpha = (1 - dist / MOUSE_DIST) * 0.5;
         ctx.beginPath();
         ctx.strokeStyle = 'rgba(36,99,235,' + alpha + ')';
-        ctx.lineWidth = 0.8;
+        ctx.lineWidth = 1.2;
         ctx.moveTo(p.x, p.y);
         ctx.lineTo(mx, my);
         ctx.stroke();
       }
     }
 
-    // Draw particles
+    // Draw particles with glow
     for (var i = 0; i < particles.length; i++) {
       var p = particles[i];
+
+      // Outer glow
       ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(36,99,235,0.6)';
+      ctx.arc(p.x, p.y, p.r + 6, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(36,99,235,0.15)';
       ctx.fill();
 
-      // Glow
+      // Core
       ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r + 3, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(36,99,235,0.08)';
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(36,99,235,0.8)';
       ctx.fill();
     }
 
     animId = requestAnimationFrame(drawParticles);
   }
 
-  // Mouse tracking
+  // Mouse tracking — enable pointer events on canvas wrapper for interaction
+  canvas.parentElement.style.pointerEvents = 'auto';
   document.addEventListener('mousemove', function (e) {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
@@ -140,116 +140,4 @@
     }
   }, { threshold: 0.1 });
   observer.observe(canvas.parentElement);
-
-  // ============================================================
-  // TYPING EFFECT
-  // ============================================================
-  var termBody = document.getElementById('terminalBody');
-  if (!termBody) return;
-
-  var sequences = [
-    [
-      { prompt: true, text: 'Anfrage erkannt...' },
-      { prompt: true, text: 'Sanitär-Notfall · Freiburg' },
-      { prompt: true, text: 'Termin erstellt: Mo 09:00' },
-      { success: true, text: '✓ Bestätigung gesendet · 60s' }
-    ],
-    [
-      { prompt: true, text: 'FAQ-Anfrage eingehend...' },
-      { prompt: true, text: '"Was kostet eine Heizungswartung?"' },
-      { prompt: true, text: 'KI-Antwort generiert' },
-      { success: true, text: '✓ Kunde informiert · automatisch' }
-    ],
-    [
-      { prompt: true, text: 'Neue Anfrage via Website...' },
-      { prompt: true, text: 'Elektro-Installation · Lörrach' },
-      { prompt: true, text: 'Angebot vorbereitet' },
-      { success: true, text: '✓ Per E-Mail versendet · 3 Klicks' }
-    ]
-  ];
-
-  var seqIndex = 0;
-  var lineIndex = 0;
-  var charIndex = 0;
-  var currentLines = [];
-  var isDeleting = false;
-  var deleteTimer;
-
-  function typeNextChar() {
-    var seq = sequences[seqIndex];
-    if (lineIndex >= seq.length) {
-      // All lines typed, pause then clear
-      setTimeout(clearTerminal, 2500);
-      return;
-    }
-
-    var line = seq[lineIndex];
-    var fullText = line.text;
-
-    if (charIndex === 0) {
-      // Create new line element
-      var el = document.createElement('div');
-      el.className = 'hero-terminal-line';
-      var promptSpan = document.createElement('span');
-      promptSpan.className = line.success ? 't-success' : 't-prompt';
-      promptSpan.textContent = line.success ? '' : '> ';
-      el.appendChild(promptSpan);
-      var textSpan = document.createElement('span');
-      textSpan.className = 'typed';
-      el.appendChild(textSpan);
-      var cursor = document.createElement('span');
-      cursor.className = 'hero-terminal-cursor';
-      el.appendChild(cursor);
-      termBody.appendChild(el);
-      currentLines.push(el);
-    }
-
-    var currentEl = currentLines[currentLines.length - 1];
-    var textSpan = currentEl.querySelector('.typed');
-
-    if (charIndex < fullText.length) {
-      textSpan.textContent = fullText.substring(0, charIndex + 1);
-      charIndex++;
-      var speed = 30 + Math.random() * 40;
-      setTimeout(typeNextChar, speed);
-    } else {
-      // Line complete — remove cursor, move to next line
-      var cursor = currentEl.querySelector('.hero-terminal-cursor');
-      if (cursor) cursor.remove();
-      charIndex = 0;
-      lineIndex++;
-      setTimeout(typeNextChar, 400);
-    }
-  }
-
-  function clearTerminal() {
-    isDeleting = true;
-    // Fade out lines one by one
-    var lines = termBody.querySelectorAll('.hero-terminal-line');
-    var i = lines.length - 1;
-
-    function removeLine() {
-      if (i < 0) {
-        // All cleared, start next sequence
-        seqIndex = (seqIndex + 1) % sequences.length;
-        lineIndex = 0;
-        charIndex = 0;
-        currentLines = [];
-        isDeleting = false;
-        setTimeout(typeNextChar, 800);
-        return;
-      }
-      lines[i].style.opacity = '0';
-      lines[i].style.transition = 'opacity 0.2s';
-      i--;
-      setTimeout(function () {
-        if (termBody.lastChild) termBody.removeChild(termBody.lastChild);
-        removeLine();
-      }, 150);
-    }
-    removeLine();
-  }
-
-  // Start typing after a short delay
-  setTimeout(typeNextChar, 1200);
 })();
