@@ -1933,7 +1933,7 @@ footer {
   .final-cta { padding: 80px 4%; }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 390px) {
   .hero-headline { font-size: 2.0rem; }
 
   /* Section-Headlines kleiner */
