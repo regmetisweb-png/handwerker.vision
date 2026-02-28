@@ -9,6 +9,7 @@
 <link rel="canonical" href="https://handwerker.vision/">
 
 <!-- Open Graph -->
+<!-- TODO: OG-Image erstellen (1200x630px) und unter /img/og-image.png ablegen -->
 <meta property="og:title" content="Websites für Handwerksbetriebe – Freiburg, Lörrach & Basel">
 <meta property="og:description" content="Ihre Website wird zum verlässlichen Mitarbeiter. Anfragen, Termine, Kundenfragen – rund um die Uhr. Ab 159 €/Monat.">
 <meta property="og:type" content="website">
@@ -949,23 +950,23 @@
 
     <form class="leadform reveal delay-2" data-webhook="lead">
       <div class="form__group">
-        <div class="form-label">Ihr Name *</div>
-        <input class="form-input" type="text" name="name" placeholder="Max Mustermann" required>
+        <label for="field-name" class="form-label">Ihr Name *</label>
+        <input class="form-input" type="text" name="name" id="field-name" placeholder="Max Mustermann" required>
         <span class="form__error"></span>
       </div>
       <div class="form__group">
-        <div class="form-label">E-Mail-Adresse *</div>
-        <input class="form-input" type="email" name="email" placeholder="max@musterbetrieb.de" required>
+        <label for="field-email" class="form-label">E-Mail-Adresse *</label>
+        <input class="form-input" type="email" name="email" id="field-email" placeholder="max@musterbetrieb.de" required>
         <span class="form__error"></span>
       </div>
       <div class="form__group">
-        <div class="form-label">Aktuelle Website-URL *</div>
-        <input class="form-input" type="url" name="website" placeholder="www.mein-betrieb.de" required>
+        <label for="field-website" class="form-label">Aktuelle Website-URL *</label>
+        <input class="form-input" type="url" name="website" id="field-website" placeholder="www.mein-betrieb.de" required>
         <span class="form__error"></span>
       </div>
       <div class="form__group">
-        <div class="form-label">Was ist Ihre größte Herausforderung? *</div>
-        <select class="form-input" name="herausforderung" required style="cursor:pointer;">
+        <label for="field-herausforderung" class="form-label">Was ist Ihre größte Herausforderung? *</label>
+        <select class="form-input" name="herausforderung" id="field-herausforderung" required style="cursor:pointer;">
           <option value="">Bitte wählen</option>
           <option value="wenig_anfragen">Zu wenig Anfragen über die Website</option>
           <option value="termine">Termine koordinieren kostet zu viel Zeit</option>
@@ -1032,12 +1033,12 @@
 </div>
 
 <!-- Scripts -->
-<script src="js/main.js"></script>
-<script src="js/navigation.js"></script>
-<script src="js/animations.js"></script>
-<script src="js/counter.js"></script>
-<script src="js/forms.js"></script>
-<script src="js/pricing-toggle.js"></script>
-<script src="js/hero-animation.js"></script>
+<script src="js/main.js" defer></script>
+<script src="js/navigation.js" defer></script>
+<script src="js/animations.js" defer></script>
+<script src="js/counter.js" defer></script>
+<script src="js/forms.js" defer></script>
+<script src="js/pricing-toggle.js" defer></script>
+<script src="js/hero-animation.js" defer></script>
 </body>
 </html>
