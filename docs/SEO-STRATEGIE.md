@@ -2,7 +2,7 @@
 
 **Ziel:** Beide Domains dauerhaft auf Google Seite 1 (Top 10) fuer lokale Suchanfragen in der Region Freiburg, Loerrach und Basel.
 
-> Erstellt: Februar 2026 · METISWEB VISION
+> Erstellt: Februar 2026 · handwerker.vision
 
 ---
 
@@ -28,7 +28,7 @@
 | Domain | Fokus | Zielgruppe |
 |---|---|---|
 | **handwerker.vision** | Landingpage fuer Handwerksbetriebe | SHK, Elektriker, Dachdecker, Maler in der Region |
-| **metisweb.vision** | Agentur-Website (METISWEB VISION) | KMU, Handwerker, lokale Dienstleister |
+| **metisweb.vision** | Agentur-Website (handwerker.vision) | KMU, Handwerker, lokale Dienstleister |
 
 ### Zielregion
 
@@ -103,7 +103,7 @@
 | **webgentur-freiburg.de** | Lokaler Name | Wenig Content | 10 |
 | **online-marketing-freiburg.de** | Guter Blog | SEO-Fokus, nicht Webdesign | 18 |
 
-### Wettbewerbsvorteil METISWEB VISION
+### Wettbewerbsvorteil handwerker.vision
 
 1. **Nischenfokus:** Einziger Anbieter mit reiner Handwerker-Spezialisierung in der Region
 2. **Automatisierung:** n8n-Integration als echtes Alleinstellungsmerkmal
@@ -237,7 +237,7 @@ NAP-Konsistenz (Name, Adresse, Telefon) in allen Verzeichnissen sicherstellen:
 ### NAP-Daten (konsistent ueberall)
 
 ```
-METISWEB VISION
+handwerker.vision
 Inhaber: Dionysos Kousidis
 Freiburg im Breisgau
 Tel: +49 761 59414747

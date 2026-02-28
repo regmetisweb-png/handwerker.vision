@@ -313,7 +313,7 @@ Zwei strukturierte Daten-Bloecke im `<head>`:
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "name": "METISWEB VISION",
+  "name": "handwerker.vision",
   "description": "Professionelle Websites fuer Handwerksbetriebe...",
   "url": "https://handwerker.vision",
   "telephone": "+4976159414747",

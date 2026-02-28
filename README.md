@@ -2,7 +2,7 @@
 
 **Professionelle Websites fuer Handwerksbetriebe** — Onepager mit automatisierter Kundengewinnung.
 
-> Betrieben von [METISWEB VISION](https://metisweb.vision) · Freiburg im Breisgau
+> Freiburg im Breisgau
 
 ---
 
@@ -164,4 +164,4 @@ Ausfuehrliche SEO-Strategie: **[docs/SEO-STRATEGIE.md](docs/SEO-STRATEGIE.md)**
 
 ## Lizenz
 
-Proprietaer — METISWEB VISION, Freiburg im Breisgau. Alle Rechte vorbehalten.
+Proprietaer — handwerker.vision, Freiburg im Breisgau. Alle Rechte vorbehalten.
