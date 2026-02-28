@@ -20,136 +20,96 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/animations.css">
-  <link rel="stylesheet" href="css/responsive.css">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <!-- Navigation -->
-  <nav class="nav" id="nav">
-    <div class="container nav__inner">
-      <a href="/" class="nav__logo">handwerker<span>.vision</span></a>
-      <div class="nav__links">
-        <a href="leistungen.html" class="nav__link">Leistungen</a>
-        <a href="pakete.html" class="nav__link">Pakete</a>
-        <a href="referenzen.html" class="nav__link">Referenzen</a>
-        <a href="kontakt.html" class="nav__link">Kontakt</a>
-      </div>
-      <a href="kontakt.html" class="btn btn--primary btn--small nav__cta">Erstgespräch buchen</a>
-      <button class="nav__mobile-toggle" id="navToggle" aria-label="Menü öffnen">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+  <nav id="nav">
+    <a href="/" class="logo">Metis<span>Web</span>.Vision</a>
+    <div class="nav-links">
+      <a href="/#leistungen">Leistungen</a>
+      <a href="/#preise">Preise</a>
+      <a href="/#referenzen">Kunden</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/#kontakt" class="btn-nav">Website prüfen lassen</a>
     </div>
-    <div class="nav__mobile-menu" id="mobileMenu">
-      <a href="leistungen.html">Leistungen</a>
-      <a href="pakete.html">Pakete</a>
-      <a href="referenzen.html">Referenzen</a>
-      <a href="kontakt.html">Kontakt</a>
-      <a href="kontakt.html" class="btn btn--primary">Erstgespräch buchen</a>
-    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/#leistungen">Leistungen</a>
+    <a href="/#preise">Preise</a>
+    <a href="/#referenzen">Kunden</a>
+    <a href="/#faq">FAQ</a>
+    <a href="/#kontakt">Kontakt</a>
+    <a href="/#kontakt" class="btn-nav">Website prüfen lassen</a>
+  </div>
 
   <!-- Page Header -->
   <section class="page-header">
-    <div class="container">
-      <h1>Impressum</h1>
-      <p>Angaben gemäß § 5 TMG</p>
-    </div>
+    <div class="section-eyebrow">Rechtliches</div>
+    <h1>Impressum</h1>
+    <p>Angaben gemäß § 5 TMG</p>
   </section>
 
   <!-- Legal Content -->
-  <section class="section">
-    <div class="container">
-      <div class="legal-content">
+  <section style="padding: 0 5%;">
+    <div class="legal-content">
 
-        <h2>Angaben gemäß § 5 TMG</h2>
-        <p>
-          METISWEB VISION<br>
-          Inhaber: Dionysos Kousidis
-        </p>
+      <h2>Angaben gemäß § 5 TMG</h2>
+      <p>
+        METISWEB VISION<br>
+        Inhaber: Dionysos Kousidis
+      </p>
 
-        <h2>Kontakt</h2>
-        <p>
-          Telefon: <a href="tel:+4976159414747">+49 761 59414747</a><br>
-          E-Mail: <a href="mailto:kontakt@handwerker.vision">kontakt@handwerker.vision</a>
-        </p>
+      <h2>Kontakt</h2>
+      <p>
+        Telefon: <a href="tel:+4976159414747">+49 761 59414747</a><br>
+        E-Mail: <a href="mailto:kontakt@handwerker.vision">kontakt@handwerker.vision</a>
+      </p>
 
-        <h2>Umsatzsteuer-ID</h2>
-        <p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: [wird ergänzt]</p>
+      <h2>Umsatzsteuer-ID</h2>
+      <p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: [wird ergänzt]</p>
 
-        <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
-        <p>Dionysos Kousidis</p>
+      <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+      <p>Dionysos Kousidis</p>
 
-        <h2>Haftungsausschluss</h2>
+      <h2>Haftungsausschluss</h2>
 
-        <h2>Haftung für Inhalte</h2>
-        <p>Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.</p>
+      <h2>Haftung für Inhalte</h2>
+      <p>Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.</p>
 
-        <h2>Haftung für Links</h2>
-        <p>Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter verantwortlich.</p>
+      <h2>Haftung für Links</h2>
+      <p>Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter verantwortlich.</p>
 
-        <h2>Urheberrecht</h2>
-        <p>Die Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des Autors.</p>
+      <h2>Urheberrecht</h2>
+      <p>Die Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des Autors.</p>
 
-      </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div class="footer__brand">
-          <a href="/" class="nav__logo">handwerker<span>.vision</span></a>
-          <p>Digitale Lösungen für Handwerksbetriebe in Freiburg, Lörrach und Basel.</p>
-        </div>
-        <div>
-          <h4 class="footer__heading">Seiten</h4>
-          <div class="footer__links">
-            <a href="leistungen.html" class="footer__link">Leistungen</a>
-            <a href="pakete.html" class="footer__link">Pakete</a>
-            <a href="referenzen.html" class="footer__link">Referenzen</a>
-            <a href="kontakt.html" class="footer__link">Kontakt</a>
-          </div>
-        </div>
-        <div>
-          <h4 class="footer__heading">Kontakt</h4>
-          <div class="footer__links">
-            <a href="tel:+4976159414747" class="footer__link">+49 761 59414747</a>
-            <a href="mailto:kontakt@handwerker.vision" class="footer__link">kontakt@handwerker.vision</a>
-          </div>
-        </div>
-        <div>
-          <h4 class="footer__heading">Rechtliches</h4>
-          <div class="footer__links">
-            <a href="impressum.html" class="footer__link">Impressum</a>
-            <a href="datenschutz.html" class="footer__link">Datenschutz</a>
-          </div>
-        </div>
-      </div>
-      <div class="footer__bottom">
-        <p class="footer__copyright">&copy; 2026 handwerker.vision — METISWEB VISION</p>
-        <div class="footer__legal">
-          <a href="impressum.html" class="footer__link">Impressum</a>
-          <a href="datenschutz.html" class="footer__link">Datenschutz</a>
-        </div>
-      </div>
+  <footer>
+    <div class="footer-l">&copy; 2026 METISWEB VISION · Freiburg im Breisgau</div>
+    <div class="footer-c">MW·V</div>
+    <div class="footer-r">
+      <a href="/#kontakt">Kontakt</a> &nbsp;·&nbsp;
+      <a href="datenschutz.html">Datenschutz</a> &nbsp;·&nbsp;
+      <a href="impressum.html">Impressum</a>
     </div>
   </footer>
 
   <!-- Scripts -->
+  <script src="js/main.js"></script>
   <script src="js/navigation.js"></script>
   <script src="js/animations.js"></script>
-  <script src="js/main.js"></script>
 </body>
 </html>

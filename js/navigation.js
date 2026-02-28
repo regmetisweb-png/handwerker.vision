@@ -2,10 +2,10 @@
  * Navigation — Scroll-Effekt + Mobile Menu
  */
 (function () {
-  const nav = document.getElementById('nav');
-  const toggle = document.getElementById('navToggle');
-  const menu = document.getElementById('mobileMenu');
-  let isOpen = false;
+  var nav = document.getElementById('nav');
+  var toggle = document.getElementById('navToggle');
+  var menu = document.getElementById('mobileMenu');
+  var isOpen = false;
 
   // Scroll: transparent → solid
   function onScroll() {
@@ -23,8 +23,8 @@
   if (toggle && menu) {
     toggle.addEventListener('click', function () {
       isOpen = !isOpen;
-      toggle.classList.toggle('nav__mobile-toggle--active', isOpen);
-      menu.classList.toggle('nav__mobile-menu--open', isOpen);
+      toggle.classList.toggle('active', isOpen);
+      menu.classList.toggle('open', isOpen);
       document.body.style.overflow = isOpen ? 'hidden' : '';
       toggle.setAttribute('aria-label', isOpen ? 'Menü schließen' : 'Menü öffnen');
     });
@@ -33,8 +33,8 @@
     menu.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
         isOpen = false;
-        toggle.classList.remove('nav__mobile-toggle--active');
-        menu.classList.remove('nav__mobile-menu--open');
+        toggle.classList.remove('active');
+        menu.classList.remove('open');
         document.body.style.overflow = '';
       });
     });
@@ -43,8 +43,8 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && isOpen) {
         isOpen = false;
-        toggle.classList.remove('nav__mobile-toggle--active');
-        menu.classList.remove('nav__mobile-menu--open');
+        toggle.classList.remove('active');
+        menu.classList.remove('open');
         document.body.style.overflow = '';
       }
     });

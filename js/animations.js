@@ -1,11 +1,12 @@
 /**
  * Scroll-Reveal Animations via Intersection Observer
+ * Unified: .reveal → .visible
  */
 (function () {
   if (typeof IntersectionObserver === 'undefined') {
     // Fallback: show everything
-    document.querySelectorAll('.reveal, .reveal-stagger').forEach(function (el) {
-      el.classList.add('reveal--visible', 'reveal-stagger--visible');
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      el.classList.add('visible');
     });
     return;
   }
@@ -14,24 +15,33 @@
     function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          var el = entry.target;
-          if (el.classList.contains('reveal')) {
-            el.classList.add('reveal--visible');
-          }
-          if (el.classList.contains('reveal-stagger')) {
-            el.classList.add('reveal-stagger--visible');
-          }
-          observer.unobserve(el);
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
         }
       });
     },
     {
-      threshold: 0.15,
-      rootMargin: '0px 0px -50px 0px'
+      threshold: 0.08,
+      rootMargin: '0px 0px -30px 0px'
     }
   );
 
-  document.querySelectorAll('.reveal, .reveal-stagger').forEach(function (el) {
+  document.querySelectorAll('.reveal').forEach(function (el) {
     observer.observe(el);
   });
+
+  // Cost bar animation on scroll
+  var bars = document.querySelectorAll('.cost-bar-fill');
+  if (bars.length) {
+    var barObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.style.width = e.target.style.getPropertyValue('--fill') || '40%';
+        }
+      });
+    }, { threshold: 0.3 });
+    bars.forEach(function (bar) {
+      barObserver.observe(bar);
+    });
+  }
 })();
