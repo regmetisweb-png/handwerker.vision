@@ -178,9 +178,20 @@
 <!-- ==================== HERO ==================== -->
 <section class="hero">
   <div class="hero-grid"></div>
-  <div class="hero-geo-1"></div>
-  <div class="hero-geo-2"></div>
-  <div class="hero-geo-3"></div>
+
+  <!-- Particle Network Canvas -->
+  <div class="hero-canvas-wrap">
+    <canvas id="heroCanvas"></canvas>
+  </div>
+
+  <!-- AI Typing Terminal -->
+  <div class="hero-terminal" id="heroTerminal">
+    <div class="hero-terminal-bar">
+      <div class="hero-terminal-dot"></div>
+      KI-Assistent · Live
+    </div>
+    <div class="hero-terminal-body" id="terminalBody"></div>
+  </div>
 
   <div class="hero-alert">
     <div class="hero-alert-dot"></div>
@@ -1045,5 +1056,6 @@
 <script src="js/counter.js"></script>
 <script src="js/forms.js"></script>
 <script src="js/pricing-toggle.js"></script>
+<script src="js/hero-animation.js"></script>
 </body>
 </html>
