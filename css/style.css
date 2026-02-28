@@ -260,7 +260,7 @@ nav.nav--scrolled {
    ============================================================ */
 .hero {
   min-height: 100vh;
-  padding: 140px 5% 80px;
+  padding: 140px 5% 48px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -279,10 +279,12 @@ nav.nav--scrolled {
   to { transform: translate(56px, 56px); }
 }
 /* Hero Canvas Animation */
-/* Hero Canvas — Full Width Particle Network */
+/* Hero Canvas — Right Half Particle Network */
 .hero-canvas-wrap {
   position: absolute;
-  inset: 0;
+  top: 0; right: 0;
+  width: 50%;
+  height: 100%;
   z-index: 1;
   pointer-events: none;
 }
@@ -294,19 +296,19 @@ nav.nav--scrolled {
 
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
 
-/* Loss-aversion alert strip — prominent */
+/* Loss-aversion alert strip — scrolling marquee */
 .hero-alert {
   position: absolute;
   top: 0; left: 0; right: 0;
   margin-top: 68px;
   background: rgba(232,71,42,0.18);
   border-bottom: 1px solid rgba(232,71,42,0.35);
-  padding: 16px 5%;
+  padding: 14px 0;
   display: flex;
   align-items: center;
-  gap: 14px;
   box-shadow: 0 4px 24px rgba(232,71,42,0.1);
   z-index: 5;
+  overflow: hidden;
 }
 .hero-alert-dot {
   width: 8px; height: 8px;
@@ -315,6 +317,19 @@ nav.nav--scrolled {
   flex-shrink: 0;
   animation: blink 1.5s ease infinite;
   box-shadow: 0 0 8px rgba(232,71,42,0.6);
+  position: absolute;
+  left: 5%;
+  z-index: 6;
+}
+.hero-alert-track {
+  display: flex;
+  gap: 80px;
+  animation: alertScroll 22s linear infinite;
+  white-space: nowrap;
+}
+@keyframes alertScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 .hero-alert-text {
   font-family: var(--mono);
@@ -323,6 +338,7 @@ nav.nav--scrolled {
   text-transform: uppercase;
   color: var(--red);
   text-shadow: 0 0 12px rgba(232,71,42,0.3);
+  flex-shrink: 0;
 }
 .hero-alert-text strong {
   color: #fff;
@@ -351,7 +367,7 @@ nav.nav--scrolled {
 
 .hero-headline {
   font-family: var(--display);
-  font-size: clamp(4.5rem, 13vw, 13rem);
+  font-size: clamp(4.5rem, 10vw, 10rem);
   line-height: 0.91;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -367,8 +383,8 @@ nav.nav--scrolled {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
-  margin-top: 48px;
-  padding-top: 28px;
+  margin-top: 32px;
+  padding-top: 24px;
   border-top: 1px solid var(--line);
   position: relative;
   z-index: 2;
@@ -392,14 +408,6 @@ nav.nav--scrolled {
 }
 .hero-ctas .btn-lime { width: 100%; text-align: center; }
 .hero-ctas .btn-outline { width: 100%; text-align: center; }
-.hero-ctas .cta-hint {
-  font-family: var(--mono);
-  font-size: 0.58rem;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.2);
-  text-align: center;
-}
 
 /* ============================================================
    TICKER
@@ -1861,7 +1869,7 @@ footer {
   .proof-grid { grid-template-columns: repeat(3, 1fr); }
   .proof-item:nth-child(3) { border-right: none; }
   .proof-item:nth-child(n+4) { border-top: 1px solid var(--line); }
-  .hero-canvas-wrap { opacity: 0.3; }
+  .hero-canvas-wrap { width: 100%; opacity: 0.3; }
   .mobile-sticky-cta { display: block; }
   footer { grid-template-columns: 1fr; text-align: center; }
   .footer-r { text-align: center; }
