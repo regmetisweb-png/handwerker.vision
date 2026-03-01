@@ -8,6 +8,32 @@
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; background: #0D0F14; }
+
+/* ============================================================
+   ACCESSIBILITY — Focus Indicator (WCAG 2.4.7)
+   ============================================================ */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+/* High-contrast skip link */
+.skip-link:focus-visible {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 9999;
+  background: var(--blue);
+  color: #fff;
+  padding: 8px 16px;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 3px;
+}
 body {
   background: #0D0F14;
   color: #fff;
@@ -90,6 +116,10 @@ nav.nav--scrolled {
   color: var(--muted);
   text-decoration: none;
   transition: color 0.2s;
+  /* WCAG 2.5.5: Touch-Target ≥ 44px */
+  padding-block: 11px;
+  display: inline-flex;
+  align-items: center;
 }
 .nav-links a:hover { color: var(--white); }
 .btn-nav {
@@ -1096,16 +1126,12 @@ nav.nav--scrolled {
   font-size: 0.68rem;
   letter-spacing: 0.5px;
   padding: 12px 14px;
-  outline: none;
-  transition: border-color 0.2s, outline 0.1s;
+  outline: none; /* eigener :focus-visible-Stil unten */
+  transition: border-color 0.2s;
   width: 100%;
 }
 .form-input:focus { border-color: rgba(36,99,235,0.4); }
-.form-input:focus-visible {
-  outline: 2px solid var(--blue);
-  outline-offset: 0;
-  border-color: var(--blue);
-}
+.form-input:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 .form-input::placeholder { color: rgba(255,255,255,0.15); text-transform: uppercase; letter-spacing: 1px; font-size: 0.62rem; }
 .check-group {
   display: flex;
@@ -1165,18 +1191,23 @@ nav.nav--scrolled {
   border-top: 1px solid var(--line);
 }
 .faq-list { margin-top: 56px; }
-.faq-item {
+/* WCAG 4.1.2: FAQ als native <details>/<summary> */
+details.faq-item {
   border-bottom: 1px solid var(--line);
 }
-.faq-item:first-child { border-top: 1px solid var(--line); }
-.faq-q {
+details.faq-item:first-child { border-top: 1px solid var(--line); }
+/* summary: nativen Marker entfernen */
+summary.faq-q {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 22px 0;
   cursor: pointer;
   gap: 20px;
+  list-style: none;
 }
+summary.faq-q::-webkit-details-marker { display: none; }
+summary.faq-q::marker { display: none; }
 .faq-q-text {
   font-family: var(--mono);
   font-size: 0.75rem;
@@ -1193,7 +1224,7 @@ nav.nav--scrolled {
   flex-shrink: 0;
   transition: transform 0.25s;
 }
-.faq-item.open .faq-toggle { transform: rotate(45deg); }
+details.faq-item[open] .faq-toggle { transform: rotate(45deg); }
 .faq-a {
   font-family: var(--mono);
   font-size: 0.66rem;
@@ -1205,8 +1236,8 @@ nav.nav--scrolled {
   overflow: hidden;
   transition: max-height 0.35s ease, padding 0.25s;
 }
-.faq-item.open .faq-a {
-  max-height: 400px;
+details.faq-item[open] .faq-a {
+  max-height: 600px;
   padding-bottom: 22px;
 }
 
@@ -1716,10 +1747,10 @@ footer {
   font-size: 0.9rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.55); /* WCAG 1.4.3: erhöht von 2.2:1 auf 4.8:1 */
+  color: rgba(255,255,255,0.25);
 }
 .footer-r { text-align: right; }
-.footer-r a { color: rgba(255,255,255,0.55); text-decoration: none; }
+.footer-r a { color: rgba(255,255,255,0.25); text-decoration: none; }
 .footer-r a:hover { color: var(--muted); }
 .footer-c {
   display: none;
@@ -1920,50 +1951,4 @@ footer {
   .ticker-track { animation: none; }
   .hero-canvas-wrap { display: none; }
   .chat-fab { animation: none; }
-}
-
-/* ============================================================
-   ACCESSIBILITY — Focus Indicators (WCAG 2.4.7)
-   Sichtbare Fokus-Ringe für Tastatur-Navigation.
-   :focus-visible greift NUR bei Tastatur, nicht bei Maus-Klick.
-   ============================================================ */
-:focus-visible {
-  outline: 2px solid var(--blue);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-.nav-links a:focus-visible,
-.mobile-menu a:focus-visible {
-  outline: 2px solid var(--blue);
-  outline-offset: 5px;
-}
-button:focus-visible,
-.btn-outline:focus-visible,
-.form-submit:focus-visible {
-  outline: 2px solid var(--blue);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-input[type="checkbox"]:focus-visible {
-  outline: 2px solid var(--blue);
-  outline-offset: 2px;
-}
-/* Skip-Link: nur bei Fokus sichtbar */
-.skip-link {
-  position: absolute;
-  top: -100px;
-  left: 16px;
-  z-index: 9999;
-  background: var(--blue);
-  color: var(--white);
-  padding: 8px 16px;
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  letter-spacing: 1px;
-  text-decoration: none;
-  border-radius: 0 0 4px 4px;
-  transition: top 0.2s;
-}
-.skip-link:focus {
-  top: 0;
 }

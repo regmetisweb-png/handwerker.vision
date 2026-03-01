@@ -26,7 +26,9 @@
       toggle.classList.toggle('active', isOpen);
       menu.classList.toggle('open', isOpen);
       document.body.style.overflow = isOpen ? 'hidden' : '';
+      // WCAG 4.1.2: Zustand für Screen-Reader kommunizieren
       toggle.setAttribute('aria-label', isOpen ? 'Menü schließen' : 'Menü öffnen');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
 
     // Close on link click
@@ -36,6 +38,7 @@
         toggle.classList.remove('active');
         menu.classList.remove('open');
         document.body.style.overflow = '';
+        toggle.setAttribute('aria-expanded', 'false');
       });
     });
 
@@ -46,6 +49,8 @@
         toggle.classList.remove('active');
         menu.classList.remove('open');
         document.body.style.overflow = '';
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.focus(); // Fokus zurück zum Button
       }
     });
   }

@@ -11,9 +11,13 @@
     btn.addEventListener('click', function () {
       var billing = btn.getAttribute('data-billing');
 
-      // Toggle active class
-      buttons.forEach(function (b) { b.classList.remove('active'); });
+      // Toggle active class + WCAG 4.1.2: aria-selected
+      buttons.forEach(function (b) {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
       btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
 
       // Update prices
       cards.forEach(function (card) {
@@ -23,8 +27,9 @@
 
         if (billing === 'annual') {
           var annual = card.getAttribute('data-annual');
-          priceEl.textContent = parseInt(annual).toLocaleString('de-DE');
-          periodEl.textContent = '/ Jahr · inkl. MwSt.';
+          var monthlyEquiv = Math.round(parseInt(annual) / 12);
+          priceEl.textContent = monthlyEquiv;
+          periodEl.textContent = '/ Monat · jährlich ' + parseInt(annual).toLocaleString('de-DE') + ' €/Jahr';
         } else {
           var monthly = card.getAttribute('data-monthly');
           priceEl.textContent = monthly;
