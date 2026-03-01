@@ -356,29 +356,60 @@ nav.nav--scrolled {
   display: block;
 }
 
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
+@keyframes pulse-glow {
+  0%,100% { box-shadow: 0 0 6px 2px rgba(56,189,248,0.5), 0 0 14px 4px rgba(36,99,235,0.3); }
+  50%      { box-shadow: 0 0 12px 4px rgba(56,189,248,0.8), 0 0 28px 8px rgba(36,99,235,0.5); }
+}
+@keyframes alertSweep {
+  0%   { transform: translateX(-100%); opacity: 0; }
+  8%   { opacity: 0.6; }
+  50%  { opacity: 0.15; }
+  92%  { opacity: 0.6; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
 
 /* Loss-aversion alert strip — scrolling marquee */
 .hero-alert {
   position: absolute;
   top: 0; left: 0; right: 0;
   margin-top: 68px;
-  background: linear-gradient(90deg, rgba(29,78,216,0.2), rgba(36,99,235,0.15), rgba(29,78,216,0.2));
-  border-bottom: 1px solid rgba(36,99,235,0.3);
-  padding: 14px 0;
+  background: linear-gradient(
+    90deg,
+    rgba(14,165,233,0.18),
+    rgba(36,99,235,0.32) 30%,
+    rgba(14,165,233,0.28) 50%,
+    rgba(36,99,235,0.32) 70%,
+    rgba(14,165,233,0.18)
+  );
+  border-top: 1px solid rgba(56,189,248,0.45);
+  border-bottom: 1px solid rgba(36,99,235,0.5);
+  padding: 13px 0;
   display: flex;
   align-items: center;
-  box-shadow: 0 4px 24px rgba(36,99,235,0.1);
+  box-shadow:
+    0 -2px 12px rgba(14,165,233,0.15),
+    0 4px 28px rgba(36,99,235,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.04);
   z-index: 5;
   overflow: hidden;
 }
+/* Shimmer sweep */
+.hero-alert::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 120px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  animation: alertSweep 6s ease-in-out infinite;
+  pointer-events: none;
+}
 .hero-alert-dot {
-  width: 8px; height: 8px;
+  width: 10px; height: 10px;
   border-radius: 50%;
-  background: var(--blue);
+  background: #38BDF8;
   flex-shrink: 0;
-  animation: blink 1.5s ease infinite;
-  box-shadow: 0 0 8px rgba(36,99,235,0.6);
+  animation: blink 1.4s ease infinite, pulse-glow 1.4s ease infinite;
   position: absolute;
   left: 5%;
   z-index: 6;
@@ -386,7 +417,7 @@ nav.nav--scrolled {
 .hero-alert-track {
   display: flex;
   gap: 80px;
-  animation: alertScroll 30s linear infinite;
+  animation: alertScroll 28s linear infinite;
   white-space: nowrap;
 }
 @keyframes alertScroll {
@@ -395,15 +426,18 @@ nav.nav--scrolled {
 }
 .hero-alert-text {
   font-family: var(--mono);
-  font-size: 0.65rem;
-  letter-spacing: 1.5px;
+  font-size: 0.66rem;
+  letter-spacing: 1.8px;
   text-transform: uppercase;
-  color: rgba(147,197,253,0.9);
+  color: rgba(255,255,255,0.82);
   flex-shrink: 0;
 }
 .hero-alert-text strong {
-  color: #fff;
-  font-size: 0.75rem;
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 0 0 14px rgba(56,189,248,0.6);
 }
 
 .hero-eyebrow {
