@@ -12,7 +12,7 @@ body {
   background: #0D0F14;
   color: #fff;
   font-family: 'DM Sans', sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   overflow-x: hidden;
 }
 :root {
@@ -20,9 +20,9 @@ body {
   --white: #fff;
   --blue: #2463EB;
   --red: #E8472A;
-  --muted: rgba(255,255,255,0.35);
-  --line: rgba(255,255,255,0.1);
-  --card: rgba(255,255,255,0.03);
+  --muted: rgba(255,255,255,0.65);
+  --line: rgba(255,255,255,0.15);
+  --card: rgba(255,255,255,0.07);
   --mono: 'Space Mono', monospace;
   --display: 'Bebas Neue', sans-serif;
   --body: 'DM Sans', sans-serif;
@@ -46,6 +46,7 @@ ul, ol { list-style: none; }
   transition: transform 0.08s;
   mix-blend-mode: normal;
 }
+@media (pointer: coarse) { .cursor { display: none; } }
 
 /* ============================================================
    NAV
@@ -57,7 +58,7 @@ nav {
   padding: 16px 5%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   background: linear-gradient(to bottom, rgba(13,15,20,0.98) 0%, rgba(13,15,20,0.7) 100%);
   border-bottom: 1px solid rgba(255,255,255,0.04);
   transition: background 0.3s, backdrop-filter 0.3s;
@@ -82,7 +83,7 @@ nav.nav--scrolled {
   gap: 28px;
 }
 .nav-links a {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--body);
   font-size: 1rem;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -225,7 +226,7 @@ nav.nav--scrolled {
   background: var(--blue);
   color: #ffffff;
   border: none;
-  padding: 16px 28px;
+  padding: 14px 28px;
   cursor: pointer;
   font-weight: 700;
   transition: all 0.2s;
@@ -241,7 +242,7 @@ nav.nav--scrolled {
   background: transparent;
   color: var(--muted);
   border: 1px solid var(--line);
-  padding: 15px 28px;
+  padding: 13px 28px;
   cursor: pointer;
   transition: all 0.2s;
   display: inline-block;
@@ -353,7 +354,7 @@ nav.nav--scrolled {
 }
 
 .hero-eyebrow {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--body);
   font-size: 0.65rem;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -396,7 +397,7 @@ nav.nav--scrolled {
   z-index: 2;
 }
 .hero-sub {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--body);
   font-size: 0.78rem;
   letter-spacing: 0.8px;
   text-transform: uppercase;
@@ -734,6 +735,7 @@ nav.nav--scrolled {
   background: rgba(36,99,235,0.03);
   border-color: rgba(36,99,235,0.2);
 }
+/* .pricing-card.featured badge is now handled by .pricing-badge element */
 .pricing-name {
   font-family: var(--mono);
   font-size: 0.62rem;
@@ -832,7 +834,7 @@ nav.nav--scrolled {
   font-size: 0.6rem;
   letter-spacing: 2px;
   text-transform: uppercase;
-  padding: 12px 24px;
+  padding: 10px 24px;
   background: transparent;
   color: var(--muted);
   border: none;
@@ -1093,7 +1095,7 @@ nav.nav--scrolled {
   font-family: var(--mono);
   font-size: 0.68rem;
   letter-spacing: 0.5px;
-  padding: 14px 14px;
+  padding: 12px 14px;
   outline: none;
   transition: border-color 0.2s;
   width: 100%;
@@ -1132,7 +1134,7 @@ nav.nav--scrolled {
   background: var(--blue);
   color: #ffffff;
   border: none;
-  padding: 18px;
+  padding: 16px;
   cursor: pointer;
   font-weight: 700;
   transition: all 0.2s;
@@ -1705,7 +1707,7 @@ footer {
   gap: 24px;
 }
 .footer-l, .footer-r {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--body);
   font-size: 0.9rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -1894,83 +1896,6 @@ footer {
   .proof-item:nth-child(odd) { border-right: 1px solid var(--line); }
   .proof-item:last-child { border-bottom: none; }
   .case-result-grid { grid-template-columns: 1fr 1fr; }
-}
-
-@media (max-width: 430px) {
-  /* Hero */
-  .hero-headline { font-size: clamp(3.2rem, 11vw, 4.5rem); }
-  .hero { padding-bottom: 48px; }
-  .hero-alert { margin-top: 56px; padding: 8px 4%; }
-  .hero-alert-text { font-size: 0.55rem; letter-spacing: 1px; }
-  .hero-eyebrow { font-size: 0.55rem; margin-bottom: 14px; }
-  .hero-sub { font-size: 0.6rem; }
-  .hero-ctas .cta-hint { font-size: 0.5rem; }
-
-  /* Problem-Visual + Leadform */
-  .problem-visual { padding: 24px; }
-  .leadform { padding: 24px; }
-
-  /* Cost-Display */
-  .cost-display { font-size: clamp(2.4rem, 10vw, 3.5rem); }
-
-  /* Buttons + Toggle */
-  .btn-lime { font-size: 0.6rem; padding: 14px 16px; }
-  .btn-outline { font-size: 0.6rem; padding: 13px 16px; }
-  .toggle-btn { font-size: 0.55rem; padding: 10px 16px; }
-
-  /* Sections allgemein */
-  .problem-section,
-  .features-section,
-  .process-section,
-  .pricing-section,
-  .cases-section,
-  .refs-section,
-  .faq-section,
-  .form-section,
-  .compare-section,
-  .about-section,
-  .proof-section { padding: 60px 4%; }
-  .final-cta { padding: 80px 4%; }
-}
-
-@media (max-width: 390px) {
-  .hero-headline { font-size: 3.0rem !important; }
-
-  /* Section-Headlines kleiner */
-  .display-xl { font-size: clamp(2rem, 6vw, 3rem) !important; }
-  .final-headline { font-size: clamp(2rem, 6vw, 3rem); }
-
-  /* FAQ-Fragen kompakter */
-  .faq-q-text { font-size: 0.65rem; letter-spacing: 0.5px; }
-
-  /* Case-Metrics einspaltig */
-  .case-result-grid { grid-template-columns: 1fr; }
-}
-
-@media (min-width: 1800px) {
-  /* Content-Sections: Inhalt zentrieren bei 2560px */
-  .problem-section,
-  .features-section,
-  .process-section,
-  .pricing-section,
-  .cases-section,
-  .refs-section,
-  .faq-section,
-  .form-section,
-  .compare-section,
-  .about-section { padding-left: 15%; padding-right: 15%; }
-
-  /* Hero */
-  .hero { padding-left: 15%; padding-right: 15%; }
-  .hero-headline { font-size: clamp(4.5rem, 10vw, 10rem); }
-
-  /* Final CTA */
-  .final-cta { padding-left: 15%; padding-right: 15%; }
-  .final-headline { font-size: clamp(3rem, 7vw, 7rem); }
-  .final-cta::before { font-size: 20vw; }
-
-  /* Nav + Alert bleiben full-width */
-  .hero-alert { left: 0; right: 0; padding: 10px 15%; }
 }
 
 /* ============================================================
