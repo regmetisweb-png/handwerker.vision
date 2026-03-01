@@ -1,6 +1,15 @@
 # Technische Architektur — handwerker.vision
 
-> Letzte Aktualisierung: Februar 2026
+> Letzte Aktualisierung: März 2026 · v1.1
+
+## Changelog
+
+| Version | Datum | Änderungen |
+|---|---|---|
+| **v1.1** | März 2026 | WCAG 2.1 AA: FAQ `<details>/<summary>`, `:focus-visible`, `aria-expanded` Nav, `role=tab` Pricing, `aria-hidden` Ticker, Skip-Link, Form-Labels, Footer-Kontrast. Pricing-Toggle: Jahresbeträge (1.620/2.978/4.970 €) als Hauptpreis. |
+| v1.0 | Feb 2026 | Initiale Version — Onepager Launch |
+
+---
 
 ---
 

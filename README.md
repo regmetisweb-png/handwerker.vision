@@ -6,6 +6,15 @@
 
 ---
 
+## Versionen
+
+| Version | Datum | Beschreibung |
+|---|---|---|
+| **v1.1** | März 2026 | WCAG 2.1 AA Accessibility Fixes, Pricing-Korrektur (Jahresbeträge) |
+| v1.0 | Feb 2026 | Initiale Version — Onepager Launch |
+
+---
+
 ## Uebersicht
 
 handwerker.vision ist eine spezialisierte Landingpage fuer Handwerksbetriebe in der Region Freiburg, Loerrach und Basel. Die Website dient als digitales Buero: automatische Anfragenbearbeitung, Terminbuchung und Kundenkommunikation — rund um die Uhr.
