@@ -26,10 +26,9 @@
         if (!priceEl) return;
 
         if (billing === 'annual') {
-          var annual = card.getAttribute('data-annual');
-          var monthlyEquiv = Math.round(parseInt(annual) / 12);
-          priceEl.textContent = monthlyEquiv;
-          periodEl.textContent = '/ Monat · jährlich ' + parseInt(annual).toLocaleString('de-DE') + ' €/Jahr';
+          var annual = parseInt(card.getAttribute('data-annual'));
+          priceEl.textContent = annual.toLocaleString('de-DE');
+          periodEl.textContent = '/ Jahr · inkl. MwSt.';
         } else {
           var monthly = card.getAttribute('data-monthly');
           priceEl.textContent = monthly;
